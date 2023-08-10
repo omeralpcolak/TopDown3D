@@ -2,4 +2,5 @@
 
 For the topdown3D game a simple map was designed : 
 
-![Screenshot 2023-08-10 at 16 31 50](https://github.com/omeralpcolak/TopDown3D/assets/112391850/e1a78b82-5512-4b1e-bdef-73749a910633)
+
+<img width="1160" alt="Screenshot 2023-08-10 at 19 38 23" src="https://github.com/omeralpcolak/TopDown3D/assets/112391850/d731fffc-a0cf-4a95-b263-cd4d7b3d7bd8">
