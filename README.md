@@ -7,4 +7,5 @@ Beginning of the game:
 
 Testing the camera shake: 
 
-![camerashake_test](https://github.com/omeralpcolak/TopDown3D/assets/112391850/60aec1e9-040b-4887-8577-8f86dc739d34)
+
+![camerashake_test1](https://github.com/omeralpcolak/TopDown3D/assets/112391850/62f32d73-dda9-430e-9b29-e1a91e1bb23c)
