@@ -13,11 +13,12 @@ public class PlayerMovement : MonoBehaviour
     public GameObject joySticks;
 
     private Rigidbody rb;
+    PlayerAttack playerAttack;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-
+        playerAttack = GetComponent<PlayerAttack>();
     }
 
     void FixedUpdate()
@@ -42,6 +43,11 @@ public class PlayerMovement : MonoBehaviour
         if (Mathf.Abs(rotationInput) >= 0.1f)
         {
             RotatePlayer(rotationInput);
+        }
+
+        if (Mathf.Abs(rotationJoystick.Horizontal) > 0.6 || Mathf.Abs(rotationJoystick.Vertical) > 0.6)
+        {
+            playerAttack.SpawnBullet();
         }
     }
 
