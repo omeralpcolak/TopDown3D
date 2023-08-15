@@ -10,15 +10,19 @@ public class PlayerMovement : MonoBehaviour
     public Joystick movementJoystick;
     public Joystick rotationJoystick;
 
+    public GameObject hat;
     public GameObject joySticks;
 
     private Rigidbody rb;
     PlayerAttack playerAttack;
 
+    Animator hatAnim;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         playerAttack = GetComponent<PlayerAttack>();
+        hatAnim = hat.GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -34,6 +38,10 @@ public class PlayerMovement : MonoBehaviour
         if (movementDirection.magnitude >= 0.1f)
         {
             MovePlayer(movementDirection);
+        }
+        else
+        {
+            hatAnim.SetBool("running", false);
         }
 
 
@@ -58,9 +66,10 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator JoySticksActivasion()
     {
-        yield return null;
+        
         joySticks.gameObject.SetActive(true);
         joySticks.GetComponent<CanvasGroup>().DOFade(1, 2f);
+        yield return null;
 
 
     }
@@ -71,6 +80,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movementVelocity = direction.normalized * movementSpeed * Time.deltaTime;
 
         rb.MovePosition(transform.position + movementVelocity);
+        hatAnim.SetBool("running", true);
     }
 
     void RotatePlayer(float rotationInput)

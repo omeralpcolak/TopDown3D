@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    public Transform spawnPoint;
+    public Transform spawnPoint, spawnPoint2;
     [SerializeField] float bulletCooldown;
 
     float lastShotTime;
@@ -29,6 +29,7 @@ public class PlayerAttack : MonoBehaviour
     {
         Vector3 playerFacingDirection = transform.forward;
         Instantiate(bulletPrefab, spawnPoint.position, Quaternion.LookRotation(playerFacingDirection));
+        Instantiate(bulletPrefab, spawnPoint2.position, Quaternion.LookRotation(playerFacingDirection));
         yield return null;
     }
 }
