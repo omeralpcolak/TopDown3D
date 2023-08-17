@@ -6,7 +6,7 @@ public class EnemyBullet : MonoBehaviour
 {
     public float enemyBulletSpeed;
     Vector3 shootingDirection;
-
+    public List<GameObject> enemyHitEffects = new List<GameObject>();
 
     private void FixedUpdate()
     {
@@ -23,6 +23,16 @@ public class EnemyBullet : MonoBehaviour
         if (other.tag == "Player")
         {
             Destroy(gameObject);
+            RandomHitEffectSpawn();
+            
         }
+    }
+
+    private void RandomHitEffectSpawn()
+    {
+        int randomIndex = Random.Range(0, enemyHitEffects.Count);
+        GameObject randomHitEffect = enemyHitEffects[randomIndex];
+        Instantiate(randomHitEffect, transform.position, Quaternion.identity);
+        
     }
 }

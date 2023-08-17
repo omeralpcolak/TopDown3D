@@ -146,4 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7938f16e6b13f4e68a05cfdabb080739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyBulletSpeed: 12
+  enemyBulletSpeed: 20
+  enemyHitEffects:
+  - {fileID: 6889676053574524597, guid: 1244a9e4f6193654989497ad418a287b, type: 3}
+  - {fileID: 2883797502249945402, guid: 1e54877675f6e4a46ad7ca7c4d7a5bf6, type: 3}
+  - {fileID: 904662820145583817, guid: 019faff12646bd8438ea56e8e7861fd8, type: 3}
+  - {fileID: 8547867254204328264, guid: cf378989e15716e40a61692dcd97e628, type: 3}
