@@ -46,7 +46,7 @@ public class CameraShake : MonoBehaviour
 
         
 
-        float timer = 2f;
+        float timer = 1.5f;
         
 
         while (timer > 0)
