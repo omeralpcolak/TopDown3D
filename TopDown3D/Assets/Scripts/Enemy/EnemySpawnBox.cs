@@ -7,9 +7,14 @@ public class EnemySpawnBox : MonoBehaviour
 {
     public GameObject topWall,leftWall,rightWall,bottomWall,backWall,frontWall;
     public GameObject enemySpawnBoxEffect;
+    public GameObject enemy;
+    public Transform enemySpawnPos;
+    public float wallMovDistance, wallMovDuration;
+
     // Start is called before the first frame update
     void Start()
     {
+        
         StartCoroutine(EnemySpawnBoxRtn());
     }
 
@@ -24,41 +29,46 @@ public class EnemySpawnBox : MonoBehaviour
     {
         transform.DOMoveY(-4.81f, 1f).OnComplete(delegate
         {
+            enemySpawnPos.parent = null;
             CameraShake.instance.ShakeCamera(3f);
             EnemySpawnBoxEffectPos();
-            topWall.transform.DOMoveY(10f, 1.5f).OnComplete(delegate
+            topWall.transform.DOMoveY(20f, wallMovDuration).OnComplete(delegate
             {
                 topWall.transform.DOScale(0f, 1f);
             });
 
-            bottomWall.transform.DOScale(0f, 1.5f);
+            bottomWall.transform.DOScale(0f, 1f);
 
-            leftWall.transform.DOMoveX(-10f, 1.5f).OnComplete(delegate
+            leftWall.transform.DOMoveX(-wallMovDistance, wallMovDuration).OnComplete(delegate
             {
                 leftWall.transform.DOScale(0f, 1f);
             });
 
-            rightWall.transform.DOMoveX(10f, 1.5f).OnComplete(delegate
+            rightWall.transform.DOMoveX(wallMovDistance, wallMovDuration).OnComplete(delegate
             {
                 rightWall.transform.DOScale(0f, 1f);
             });
 
-            frontWall.transform.DOMoveZ(-10f, 1.5f).OnComplete(delegate
+            frontWall.transform.DOMoveZ(-wallMovDistance, wallMovDuration).OnComplete(delegate
             {
                 frontWall.transform.DOScale(0f, 1f);
             });
 
-            backWall.transform.DOMoveZ(10f, 1.5f).OnComplete(delegate
+            backWall.transform.DOMoveZ(wallMovDistance, wallMovDuration).OnComplete(delegate
             {
                 backWall.transform.DOScale(0f, 1f);
             });
 
-
+            
 
         });
 
 
-        yield return null;
+        yield return new WaitForSeconds(2f);
+
+        Instantiate(enemy, enemySpawnPos.position, Quaternion.identity);
+
+        
     }
 
 
