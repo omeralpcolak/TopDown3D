@@ -23,3 +23,9 @@ When the certain threshold is passed at the rotation joystick, the player starts
 ![ShootingLogic](https://github.com/omeralpcolak/TopDown3D/assets/112391850/4128a1c8-b23f-4922-8a66-9a7719d24843)
 
 
+Enemy spawning prototype: 
+
+
+![enemySpawning](https://github.com/omeralpcolak/TopDown3D/assets/112391850/997c5912-0d20-4b3e-a70e-de55ad11a5c3)
+
+
