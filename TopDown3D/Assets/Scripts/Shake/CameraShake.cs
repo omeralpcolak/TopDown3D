@@ -17,9 +17,9 @@ public class CameraShake : MonoBehaviour
         cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
     }
 
-    public void ShakeCamera()
+    public void ShakeCamera(float shakeTime)
     {
-        StartCoroutine(ShakeCR());
+        StartCoroutine(ShakeCR(shakeTime));
     }
 
     private void FixedUpdate()
@@ -39,14 +39,14 @@ public class CameraShake : MonoBehaviour
         }
     }
 
-    IEnumerator ShakeCR()
+    IEnumerator ShakeCR(float timer)
     {
         CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin =
             cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
 
         
 
-        float timer = 1.5f;
+        
         
 
         while (timer > 0)

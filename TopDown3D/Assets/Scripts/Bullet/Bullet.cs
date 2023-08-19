@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
             Instantiate(hitEffect, transform.position, transform.rotation);
-            CameraShake.instance.ShakeCamera();
+            CameraShake.instance.ShakeCamera(1.5f);
         }
     }
 }
