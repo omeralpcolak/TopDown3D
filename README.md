@@ -28,4 +28,9 @@ Enemy spawning prototype:
 
 ![enemySpawning](https://github.com/omeralpcolak/TopDown3D/assets/112391850/997c5912-0d20-4b3e-a70e-de55ad11a5c3)
 
+Instantiating random hit effects: 
+
+
+![hitEffects](https://github.com/omeralpcolak/TopDown3D/assets/112391850/f2c73e5f-0f10-4b9f-a787-af1f01102200)
+
 
