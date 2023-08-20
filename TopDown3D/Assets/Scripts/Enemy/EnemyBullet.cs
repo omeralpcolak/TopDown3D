@@ -6,7 +6,7 @@ public class EnemyBullet : MonoBehaviour
 {
     public float enemyBulletSpeed;
     Vector3 shootingDirection;
-    public List<GameObject> enemyHitEffects = new List<GameObject>();
+    public GameObject enemyBulletHitEffect;
     
 
     private void FixedUpdate()
@@ -21,15 +21,15 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-       /* if (other.tag == "Player")
+        if (other.tag == "Player")
         {
             Destroy(gameObject);
-            RandomHitEffectSpawn();
+            Instantiate(enemyBulletHitEffect, transform.position, Quaternion.identity);
             
-        } */
+        } 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    /*private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Wall"))
         {
@@ -41,15 +41,7 @@ public class EnemyBullet : MonoBehaviour
             RandomHitEffectSpawn();
 
         }
-    }
+    }*/
 
-    private void RandomHitEffectSpawn()
-    {
-        int randomIndex = Random.Range(0, enemyHitEffects.Count);
-        GameObject randomHitEffect = enemyHitEffects[randomIndex];
-        Vector3 hitPos = transform.position;
-        hitPos.y += 2f;
-        Instantiate(randomHitEffect,hitPos , Quaternion.identity);
-        
-    }
+    
 }

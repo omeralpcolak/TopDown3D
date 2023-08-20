@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
 {
     public float bulletSpeed = 10f;
     public GameObject hitEffect;
+    public List<GameObject> bulletHitEffects = new List<GameObject>();
 
     void FixedUpdate()
     {
@@ -14,7 +15,7 @@ public class Bullet : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Enemy"))
         {
@@ -22,5 +23,26 @@ public class Bullet : MonoBehaviour
             Instantiate(hitEffect, transform.position, transform.rotation);
             CameraShake.instance.ShakeCamera(1.5f);
         }
+    }*/
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(gameObject);
+            Instantiate(hitEffect, transform.position, transform.rotation);
+            RandomHitEffectSpawn();
+            CameraShake.instance.ShakeCamera(1.5f);
+        }
+    }
+
+    private void RandomHitEffectSpawn()
+    {
+        int randomIndex = Random.Range(0, bulletHitEffects.Count);
+        GameObject randomHitEffect = bulletHitEffects[randomIndex];
+        Vector3 hitPos = transform.position;
+        hitPos.y += 2f;
+        Instantiate(randomHitEffect, hitPos, Quaternion.identity);
+
     }
 }

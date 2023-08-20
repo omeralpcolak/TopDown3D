@@ -7,64 +7,30 @@ public class EnemyMovement : MonoBehaviour
 {
     private NavMeshAgent navMeshAgent;
     private Transform player;
-
-    private bool isFollowingPlayer = false;
-    private float randomPathDistance = 10.0f; // Distance for the random path
-
-    private Vector3 randomPathTarget;
-    private bool hasReachedRandomPathTarget = true; // Start with true to trigger initial random path
+    private float followDistance = 5.0f; // Desired distance between enemy and player
 
     private void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        SetRandomPathTarget();
     }
 
     private void FixedUpdate()
     {
-        EnemyMovementFunc();
-    }
-
-    private void EnemyMovementFunc()
-    {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        if (distanceToPlayer <= 10.0f) // You can adjust this distance threshold
+        if (distanceToPlayer > followDistance)
         {
-            isFollowingPlayer = true;
+            // Calculate the position the enemy should move towards
+            Vector3 targetPosition = player.position + (transform.position - player.position).normalized * followDistance;
+
+            // Move towards the calculated target position
+            navMeshAgent.SetDestination(targetPosition);
         }
-        else if (!isFollowingPlayer)
+        else
         {
-            if (hasReachedRandomPathTarget)
-            {
-                SetRandomPathTarget();
-            }
-
-            navMeshAgent.SetDestination(randomPathTarget);
-
-            if (!navMeshAgent.pathPending && navMeshAgent.remainingDistance < 0.5f)
-            {
-                hasReachedRandomPathTarget = true;
-            }
-        }
-
-        if (isFollowingPlayer)
-        {
-            navMeshAgent.SetDestination(player.position);
+            // Stop moving when the enemy is within the desired distance
+            navMeshAgent.SetDestination(transform.position);
         }
     }
-
-    private void SetRandomPathTarget()
-    {
-        // Find a reachable random point around the enemy
-        Vector3 randomOffset = Random.insideUnitCircle * randomPathDistance;
-        NavMeshHit hit;
-        NavMesh.SamplePosition(transform.position + randomOffset, out hit, randomPathDistance, NavMesh.AllAreas);
-
-        randomPathTarget = hit.position;
-        hasReachedRandomPathTarget = false;
-    }
-
-
 }
