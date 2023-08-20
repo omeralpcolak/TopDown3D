@@ -19,7 +19,7 @@ public class EnemyAttack : MonoBehaviour
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         CalculateDistance();
 

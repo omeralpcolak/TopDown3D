@@ -12,7 +12,7 @@ public class EnemyMovement : MonoBehaviour
     private float randomPathDistance = 10.0f; // Distance for the random path
 
     private Vector3 randomPathTarget;
-    private bool hasReachedRandomPathTarget = false;
+    private bool hasReachedRandomPathTarget = true; // Start with true to trigger initial random path
 
     private void Start()
     {
@@ -23,9 +23,14 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        EnemyMovementFunc();
+    }
+
+    private void EnemyMovementFunc()
+    {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
-        if (distanceToPlayer <= 8.0f)
+        if (distanceToPlayer <= 10.0f) // You can adjust this distance threshold
         {
             isFollowingPlayer = true;
         }
@@ -60,4 +65,6 @@ public class EnemyMovement : MonoBehaviour
         randomPathTarget = hit.position;
         hasReachedRandomPathTarget = false;
     }
+
+
 }
