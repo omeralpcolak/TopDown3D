@@ -10,6 +10,7 @@ public class EnemySpawnBox : MonoBehaviour
     public GameObject enemy;
     public Transform enemySpawnPos;
     public float wallMovDistance, wallMovDuration;
+    public int enemySpawnNumber;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,30 @@ public class EnemySpawnBox : MonoBehaviour
 
 
     IEnumerator EnemySpawnBoxRtn()
+    {
+        EnemySpawnBoxAnim();
+
+
+        yield return new WaitForSeconds(2f);
+
+        //Instantiate(enemy, enemySpawnPos.position, Quaternion.identity);
+
+        EnemySpawn(enemySpawnNumber);
+
+        
+    }
+
+    private void EnemySpawn(int spawnCount)
+    {
+        for(int i = 0; i< enemySpawnNumber; i++)
+        {
+            Vector3 spawnOffset = new Vector3(Random.Range(-3f, 3f), 0f, Random.Range(-3f, 3f));
+            Vector3 spawnPosition = enemySpawnPos.position + spawnOffset;
+            Instantiate(enemy, spawnPosition, Quaternion.identity);
+        }
+    }
+
+    private void EnemySpawnBoxAnim()
     {
         transform.DOMoveY(-4.81f, 1f).OnComplete(delegate
         {
@@ -59,16 +84,9 @@ public class EnemySpawnBox : MonoBehaviour
                 backWall.transform.DOScale(0f, 1f);
             });
 
-            
+
 
         });
-
-
-        yield return new WaitForSeconds(2f);
-
-        Instantiate(enemy, enemySpawnPos.position, Quaternion.identity);
-
-        
     }
 
 

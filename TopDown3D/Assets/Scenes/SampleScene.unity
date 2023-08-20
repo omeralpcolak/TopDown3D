@@ -1802,7 +1802,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412263126}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.41973302, y: 0.000000015617333, z: -0.0000000072220865, w: 0.90764767}
+  m_LocalRotation: {x: 0.41973302, y: -0.000000015617328, z: 0.0000000072220843, w: 0.90764767}
   m_LocalPosition: {x: -0.1045, y: 82.64, z: -10.6112995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5629,7 +5629,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.41973302, y: 0.000000015617333, z: -0.0000000072220865, w: 0.90764767}
+  m_LocalRotation: {x: 0.41973302, y: -0.000000015617328, z: 0.0000000072220843, w: 0.90764767}
   m_LocalPosition: {x: 0, y: 20, z: -17.000002}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
@@ -7925,6 +7925,7 @@ MonoBehaviour:
   enemySpawnPos: {fileID: 1894169404}
   wallMovDistance: 5
   wallMovDuration: 1
+  enemySpawnNumber: 4
 --- !u!4 &1364670441
 Transform:
   m_ObjectHideFlags: 0
