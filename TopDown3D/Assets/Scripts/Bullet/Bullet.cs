@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float bulletSpeed = 10f;
-    public GameObject hitEffect;
+    public GameObject hitEffect, wallHitEffect;
     public List<GameObject> bulletHitEffects = new List<GameObject>();
 
     void FixedUpdate()
@@ -34,6 +34,12 @@ public class Bullet : MonoBehaviour
             RandomHitEffectSpawn();
             CameraShake.instance.ShakeCamera(1.5f);
         }
+
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+            Instantiate(wallHitEffect, transform.position, transform.rotation);
+        }
     }
 
     private void RandomHitEffectSpawn()
@@ -41,7 +47,8 @@ public class Bullet : MonoBehaviour
         int randomIndex = Random.Range(0, bulletHitEffects.Count);
         GameObject randomHitEffect = bulletHitEffects[randomIndex];
         Vector3 hitPos = transform.position;
-        hitPos.y += 2f;
+        float randomYoffset = Random.Range(1, 3);
+        hitPos.y += randomYoffset;
         Instantiate(randomHitEffect, hitPos, Quaternion.identity);
 
     }
