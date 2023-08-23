@@ -7,9 +7,11 @@ public class ElevatorController : MonoBehaviour
 {
     public Transform targetPosition;
     public GameObject player;
+    public GameObject GameManager;
     //public GameObject lightSticks;
     [SerializeField] float moveDuration;
     [SerializeField] float rotationAngle;
+
     
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,7 @@ public class ElevatorController : MonoBehaviour
             {
                 player.GetComponent<PlayerMovement>().JoyStickActivasionFunc();
                 Destroy(gameObject);
+                GameManager.GetComponent<EnemySpawnController>().SpawningEnemyBoxes();
                 
             });
 

@@ -9,7 +9,7 @@ public class EnemySpawnBox : MonoBehaviour
     public GameObject enemySpawnBoxEffect;
     public GameObject enemy;
     public Transform enemySpawnPos;
-    public float wallMovDistance, wallMovDuration;
+    public float wallMovAmount, wallMovDuration;
     public int enemySpawnNumber;
 
     // Start is called before the first frame update
@@ -57,29 +57,39 @@ public class EnemySpawnBox : MonoBehaviour
             enemySpawnPos.parent = null;
             CameraShake.instance.ShakeCamera(3f);
             EnemySpawnBoxEffectPos();
-            topWall.transform.DOMoveY(20f, wallMovDuration).OnComplete(delegate
+
+            Vector3 topWallMove = topWall.transform.position + new Vector3(0, wallMovAmount, 0);
+
+            topWall.transform.DOMove(topWallMove, wallMovDuration).OnComplete(delegate
             {
                 topWall.transform.DOScale(0f, 1f);
             });
 
             bottomWall.transform.DOScale(0f, 1f);
 
-            leftWall.transform.DOMoveX(-wallMovDistance, wallMovDuration).OnComplete(delegate
+            Vector3 leftWallMove = leftWall.transform.position + new Vector3(-wallMovAmount, 0, 0);
+
+            leftWall.transform.DOMove(leftWallMove, wallMovDuration).OnComplete(delegate
             {
                 leftWall.transform.DOScale(0f, 1f);
             });
 
-            rightWall.transform.DOMoveX(wallMovDistance, wallMovDuration).OnComplete(delegate
+            Vector3 rightWallMove = rightWall.transform.position + new Vector3(wallMovAmount, 0, 0);
+
+            rightWall.transform.DOMove(rightWallMove, wallMovDuration).OnComplete(delegate
             {
                 rightWall.transform.DOScale(0f, 1f);
             });
 
-            frontWall.transform.DOMoveZ(-wallMovDistance, wallMovDuration).OnComplete(delegate
+            Vector3 frontWallMove = frontWall.transform.position + new Vector3(0, 0, -wallMovAmount); 
+
+            frontWall.transform.DOMove(frontWallMove, wallMovDuration).OnComplete(delegate
             {
                 frontWall.transform.DOScale(0f, 1f);
             });
 
-            backWall.transform.DOMoveZ(wallMovDistance, wallMovDuration).OnComplete(delegate
+            Vector3 backWallMove = backWall.transform.position + new Vector3(0, 0, wallMovAmount);
+            backWall.transform.DOMove(backWallMove, wallMovDuration).OnComplete(delegate
             {
                 backWall.transform.DOScale(0f, 1f);
             });
