@@ -540,7 +540,7 @@ MonoBehaviour:
   bottomWall: {fileID: 5462105677190735406}
   backWall: {fileID: 6732443056257296528}
   frontWall: {fileID: 1091440692010257234}
-  enemySpawnBoxEffect: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312, type: 3}
+  enemySpawnBoxEffect: {fileID: 4184510121336957638, guid: 8447872897f374236b87c98bb86c343d, type: 3}
   enemy: {fileID: 228951066102889900, guid: 531d27e7768cd4fda9b45a486e6a4190, type: 3}
   enemySpawnPos: {fileID: 1152665654354606030}
   wallMovAmount: 5

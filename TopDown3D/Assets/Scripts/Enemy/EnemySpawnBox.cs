@@ -8,6 +8,7 @@ public class EnemySpawnBox : MonoBehaviour
     public GameObject topWall,leftWall,rightWall,bottomWall,backWall,frontWall;
     public GameObject enemySpawnBoxEffect;
     public GameObject enemy;
+    //public GameObject enemySpawnEffect;
     public Transform enemySpawnPos;
     public float wallMovAmount, wallMovDuration;
     public int enemySpawnNumber;
@@ -19,11 +20,7 @@ public class EnemySpawnBox : MonoBehaviour
         StartCoroutine(EnemySpawnBoxRtn());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 
 
     IEnumerator EnemySpawnBoxRtn()
@@ -31,7 +28,7 @@ public class EnemySpawnBox : MonoBehaviour
         EnemySpawnBoxAnim();
 
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
 
         //Instantiate(enemy, enemySpawnPos.position, Quaternion.identity);
 
@@ -46,6 +43,7 @@ public class EnemySpawnBox : MonoBehaviour
         {
             Vector3 spawnOffset = new Vector3(Random.Range(-3f, 3f), 0f, Random.Range(-3f, 3f));
             Vector3 spawnPosition = enemySpawnPos.position + spawnOffset;
+            //Instantiate(enemySpawnEffect, spawnPosition, Quaternion.identity);
             Instantiate(enemy, spawnPosition, Quaternion.identity);
         }
     }
@@ -55,7 +53,7 @@ public class EnemySpawnBox : MonoBehaviour
         transform.DOMoveY(-4.81f, 1f).OnComplete(delegate
         {
             enemySpawnPos.parent = null;
-            CameraShake.instance.ShakeCamera(3f);
+            CameraShake.instance.ShakeCamera(2.5f);
             EnemySpawnBoxEffectPos();
 
             Vector3 topWallMove = topWall.transform.position + new Vector3(0, wallMovAmount, 0);

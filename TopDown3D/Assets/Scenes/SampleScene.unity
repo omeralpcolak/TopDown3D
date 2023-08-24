@@ -1472,27 +1472,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1.3333334
       objectReference: {fileID: 0}
     - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1.3333335
       objectReference: {fileID: 0}
     - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 2
+      value: 1.3333334
       objectReference: {fileID: 0}
     - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -10.449585
+      value: -6.96639
       objectReference: {fileID: 0}
     - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.5839868
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4364354964670000255, guid: 3801a320e9ae1bf44a14efa194c86c3f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1666,7 +1666,7 @@ Transform:
   m_GameObject: {fileID: 353358783}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1762,8 +1762,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412263126}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5517515, y: -0.000000025870335, z: 0.000000017114926, w: 0.8340086}
-  m_LocalPosition: {x: -0.1045, y: 92.64, z: -10.6112995}
+  m_LocalRotation: {x: 0.54491353, y: -0.000000016130343, z: 0.000000010482677, w: 0.8384923}
+  m_LocalPosition: {x: -0.1045, y: 95.14, z: -12.1112995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5529,9 +5529,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5517515, y: -0.000000025870335, z: 0.000000017114926, w: 0.8340086}
-  m_LocalPosition: {x: 0, y: 40, z: -17.000002}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalRotation: {x: 0.54491353, y: -0.000000016130343, z: 0.000000010482677, w: 0.8384923}
+  m_LocalPosition: {x: 0, y: 30.000004, z: -13.333332}
+  m_LocalScale: {x: 1.3333334, y: 1.3333334, z: 1.3333334}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1977989519}
@@ -6272,9 +6272,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1065865546}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 40, z: 3}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 30, z: 0}
+  m_LocalScale: {x: 0.6666667, y: 0.66666675, z: 0.6666667}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1977989519}
@@ -11502,17 +11502,17 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977989515}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.22388, z: 0}
-  m_LocalScale: {x: 0.0795437, y: 0.74626863, z: 0.08994582}
+  m_LocalScale: {x: 0.11931555, y: 1.1194029, z: 0.13491873}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 577131252}
   - {fileID: 768082259}
   - {fileID: 963194228}
-  - {fileID: 1065865547}
+  - {fileID: 577131252}
   - {fileID: 869938577}
   - {fileID: 1782141118}
+  - {fileID: 1065865547}
   m_Father: {fileID: 440290945}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1977989520

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float bulletSpeed = 10f;
+    public float bulletDamageAmount;
     public GameObject hitEffect, wallHitEffect;
     public List<GameObject> bulletHitEffects = new List<GameObject>();
 
@@ -33,6 +34,7 @@ public class Bullet : MonoBehaviour
             Instantiate(hitEffect, transform.position, transform.rotation);
             RandomHitEffectSpawn();
             CameraShake.instance.ShakeCamera(1.5f);
+            collision.gameObject.GetComponent<EnemyHealthController>().EnemyTakeDamage(bulletDamageAmount);
         }
 
         if (collision.gameObject.CompareTag("Wall"))

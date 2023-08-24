@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSpeed: 20
+  bulletDamageAmount: 2
   hitEffect: {fileID: 7026581117707305886, guid: 7840abee9f24a46ca82811cbac645cee, type: 3}
   wallHitEffect: {fileID: 3927347671496325266, guid: 74f11eb8358cc4f388ec97fc8b221414, type: 3}
   bulletHitEffects:
