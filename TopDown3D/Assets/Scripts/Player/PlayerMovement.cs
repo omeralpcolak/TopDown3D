@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator JoySticksActivasion()
     {
-        
+
         joySticks.gameObject.SetActive(true);
         joySticks.GetComponent<CanvasGroup>().DOFade(1, 2f);
         yield return null;
