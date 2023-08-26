@@ -8,38 +8,33 @@ public class Xp : MonoBehaviour
      PlayerMovement player;
     public float movementDuration;
     public float rotationDuration;
+    LevelXpController levelXpController;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        levelXpController = GameObject.FindGameObjectWithTag("GameManager").GetComponent<LevelXpController>();
         XpAnim();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         XpMovement();
     }
 
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            DestroyGameobject();
-            
-        }
-    }*/
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
             DestroyGameobject();
+            levelXpController.GainXp();
         }
     }
 
     public void XpAnim()
     {
-        transform.DORotate(new Vector3(360f, 360f, 0f), rotationDuration, RotateMode.FastBeyond360)
+        transform.DORotate(new Vector3(360f, 360f, 360f), rotationDuration, RotateMode.FastBeyond360)
         .SetLoops(-1, LoopType.Restart)
         .SetRelative()
         .SetEase(Ease.Linear);

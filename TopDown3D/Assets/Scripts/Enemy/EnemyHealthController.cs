@@ -19,9 +19,15 @@ public class EnemyHealthController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
-            Instantiate(xp, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            EnemyDeath();
         }
+    }
+
+    private void EnemyDeath()
+    {
+        currentHealth = 0;
+        Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
+        Instantiate(xp, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }

@@ -29,7 +29,6 @@ public class PlayerAttack : MonoBehaviour
     {
         Vector3 playerFacingDirection = transform.forward;
         Instantiate(bulletPrefab, spawnPoint.position, Quaternion.LookRotation(playerFacingDirection));
-        Instantiate(bulletPrefab, spawnPoint2.position, Quaternion.LookRotation(playerFacingDirection));
         yield return null;
     }
 }
