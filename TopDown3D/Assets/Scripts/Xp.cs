@@ -1,0 +1,60 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using DG.Tweening;
+
+public class Xp : MonoBehaviour
+{
+     PlayerMovement player;
+    public float movementDuration;
+    public float rotationDuration;
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        XpAnim();
+    }
+
+    private void FixedUpdate()
+    {
+        XpMovement();
+    }
+
+    /*private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            DestroyGameobject();
+            
+        }
+    }*/
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            DestroyGameobject();
+        }
+    }
+
+    public void XpAnim()
+    {
+        transform.DORotate(new Vector3(360f, 360f, 0f), rotationDuration, RotateMode.FastBeyond360)
+        .SetLoops(-1, LoopType.Restart)
+        .SetRelative()
+        .SetEase(Ease.Linear);
+    }
+
+    private void XpMovement()
+    {
+        transform.DOMove(player.transform.position, movementDuration);
+    }
+
+    private void DestroyGameobject()
+    {
+        transform.DOScale(0f, 1f).OnComplete(delegate
+        {
+            Destroy(gameObject);
+        });
+    }
+}

@@ -6,6 +6,7 @@ public class EnemyHealthController : MonoBehaviour
 {
     [SerializeField] float currentHealth, maxHealth;
     public GameObject enemyDeathEffect;
+    public GameObject xp;
 
     private void Start()
     {
@@ -19,6 +20,7 @@ public class EnemyHealthController : MonoBehaviour
         if (currentHealth <= 0)
         {
             Instantiate(enemyDeathEffect, transform.position, Quaternion.identity);
+            Instantiate(xp, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

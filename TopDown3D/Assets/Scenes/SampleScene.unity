@@ -1762,14 +1762,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412263126}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5847103, y: -0.000000019740597, z: 0.000000014228217, w: 0.8112422}
-  m_LocalPosition: {x: -0.1045, y: 102.64, z: -12.1112995}
+  m_LocalRotation: {x: 0.5674525, y: -0.000000020036353, z: 0.000000013808104, w: 0.82340616}
+  m_LocalPosition: {x: -0.1045, y: 98.89, z: -12.1112995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 178980501}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 66.038, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 75, y: 0, z: 0}
 --- !u!1 &420814223
 GameObject:
   m_ObjectHideFlags: 0
@@ -5529,13 +5529,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.5847103, y: -0.000000019740597, z: 0.000000014228217, w: 0.8112422}
-  m_LocalPosition: {x: -0.1045, y: 102.64, z: -12.1112995}
+  m_LocalRotation: {x: 0.5674525, y: -0.000000020036353, z: 0.000000013808104, w: 0.82340616}
+  m_LocalPosition: {x: -0.1045, y: 98.89, z: -12.1112995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 66.038, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 71.57, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6273,7 +6273,7 @@ Transform:
   m_GameObject: {fileID: 1065865546}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 40, z: 0}
+  m_LocalPosition: {x: 0, y: 35, z: 0}
   m_LocalScale: {x: 0.6666667, y: 0.66666675, z: 0.6666667}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11569,8 +11569,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0946128e1e04b53a4dd4579fb8dc46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
-  rotationSpeed: 100
+  movementSpeed: 15
+  rotationSpeed: 80
   movementJoystick: {fileID: 1270977786}
   rotationJoystick: {fileID: 759031844}
   hat: {fileID: 155027797}

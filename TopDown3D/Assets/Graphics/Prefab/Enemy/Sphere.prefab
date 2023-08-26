@@ -204,6 +204,7 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 10
   enemyDeathEffect: {fileID: 6275287106572633912, guid: ae084d74750bd4d639927d01579e9c21, type: 3}
+  xp: {fileID: 4287102088359633561, guid: ecaa7e301e94f45e5ac116eee5797039, type: 3}
 --- !u!1 &1204908877057264614
 GameObject:
   m_ObjectHideFlags: 0
