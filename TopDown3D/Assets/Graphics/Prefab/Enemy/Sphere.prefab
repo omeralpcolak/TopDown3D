@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62a9023aae2414a61995f7b33a8d7671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyShootingRange: 8
+  enemyShootingRange: 10
   enemyBulletSpawnCd: 1
   enemyBulletPrefab: {fileID: 725807088267730727, guid: 96476b59e3bc04adbb1f7b53289562f3, type: 3}
   enemyBulletPos: {fileID: 401790182364305542}

@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelXpController : MonoBehaviour
 {
     [SerializeField] float currentXp, maxXp;
-    [SerializeField] int currentLevel, nextLevel;
     [SerializeField] float xpAmount;
+    [SerializeField] int currentLevel, nextLevel;
 
-    // Start is called before the first frame update
+
+    public Image xpImg;
+
+    public float xpAddingSpeed; //in the xp bar.
+
+    private float targetXp; //it is for xp bar.
+    
     void Start()
     {
         currentXp = 0;
@@ -16,10 +23,12 @@ public class LevelXpController : MonoBehaviour
         nextLevel = currentLevel + 1;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         LevelUp();
+
+        xpImg.fillAmount = Mathf.MoveTowards(xpImg.fillAmount, targetXp, xpAddingSpeed * Time.deltaTime);
     }
 
 
@@ -36,6 +45,12 @@ public class LevelXpController : MonoBehaviour
             maxXp *=2f;
             currentLevel++;
             nextLevel++;
+            UpdateXpBar();
         }
+    }
+
+    public void UpdateXpBar()
+    {
+        targetXp = currentXp / maxXp;
     }
 }

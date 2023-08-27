@@ -29,6 +29,7 @@ public class Xp : MonoBehaviour
         {
             DestroyGameobject();
             levelXpController.GainXp();
+            levelXpController.UpdateXpBar();
         }
     }
 
