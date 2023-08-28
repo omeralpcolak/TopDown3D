@@ -27,6 +27,11 @@ Enemy Spawning:
 
 ![topdown](https://github.com/omeralpcolak/TopDown3D/assets/112391850/a9e3d1a1-c396-44d3-bd54-a49476d090e6)
 
+Creating a xp bar: 
+
+![xpBar](https://github.com/omeralpcolak/TopDown3D/assets/112391850/3a0b5a7b-f8e3-4cd4-bad5-9c1671f7e4b3)
+
+
 
 
 
