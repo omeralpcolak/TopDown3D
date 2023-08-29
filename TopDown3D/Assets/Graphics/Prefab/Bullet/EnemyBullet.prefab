@@ -147,4 +147,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyBulletSpeed: 30
+  enemyBulletDamageAmount: 5
   enemyBulletHitEffect: {fileID: 103346404344189784, guid: 348f76925abf943fb94dc7b00a73faff, type: 3}

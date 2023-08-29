@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     public Joystick rotationJoystick;
 
     public GameObject hat;
-    public GameObject joySticks;
 
     private Rigidbody rb;
     PlayerAttack playerAttack;
@@ -59,20 +58,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void JoyStickActivasionFunc()
-    {
-        StartCoroutine(JoySticksActivasion());
-    }
-
-    IEnumerator JoySticksActivasion()
-    {
-
-        joySticks.gameObject.SetActive(true);
-        joySticks.GetComponent<CanvasGroup>().DOFade(1, 2f);
-        yield return null;
-
-
-    }
+    
 
     void MovePlayer(Vector3 direction)
     {

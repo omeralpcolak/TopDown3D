@@ -6,39 +6,33 @@ using DG.Tweening;
 public class ElevatorController : MonoBehaviour
 {
     public Transform targetPosition;
+
     public GameObject player;
     public GameObject GameManager;
-    //public GameObject lightSticks;
+
+    public bool moveComplete = false;
+
     [SerializeField] float moveDuration;
     [SerializeField] float rotationAngle;
 
     
-    // Start is called before the first frame update
-    void Start()
+    
+
+
+    public void ElevatorMove()
     {
-        /*lightSticks.transform.DORotate(new Vector3(0f, rotationAngle, 0f), 1f, RotateMode.FastBeyond360)
-            .SetLoops(-1, LoopType.Restart)
-            .SetEase(Ease.Linear);*/
-            
-
-
         transform.DOMove(targetPosition.position, moveDuration).OnComplete(delegate
         {
-            player.transform.parent = null;   
+            player.transform.parent = null;
             transform.DOScale(0f, 1.5f).OnComplete(delegate
             {
-                player.GetComponent<PlayerMovement>().JoyStickActivasionFunc();
-                Destroy(gameObject);
-                GameManager.GetComponent<EnemySpawnController>().SpawningEnemyBoxes();
+                gameObject.SetActive(false);
                 
+
             });
 
         });
 
-        
-
-        
     }
-
     
 }

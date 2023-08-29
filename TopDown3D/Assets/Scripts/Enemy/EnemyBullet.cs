@@ -5,10 +5,19 @@ using UnityEngine;
 public class EnemyBullet : MonoBehaviour
 {
     public float enemyBulletSpeed;
-    Vector3 shootingDirection;
-    public GameObject enemyBulletHitEffect;
-    
+    public float enemyBulletDamageAmount;
 
+    public GameObject enemyBulletHitEffect;
+
+    Vector3 shootingDirection;
+
+
+    PlayerHealthController playerHealthController;
+
+    private void Start()
+    {
+        playerHealthController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealthController>();
+    }
     private void FixedUpdate()
     {
         transform.Translate(shootingDirection * enemyBulletSpeed * Time.deltaTime);
@@ -23,6 +32,7 @@ public class EnemyBullet : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            playerHealthController.PlayerTakeDamage(enemyBulletDamageAmount);
             Destroy(gameObject);
             Instantiate(enemyBulletHitEffect, transform.position, Quaternion.identity);
             

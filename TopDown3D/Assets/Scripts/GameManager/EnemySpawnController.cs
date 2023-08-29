@@ -6,24 +6,15 @@ public class EnemySpawnController : MonoBehaviour
 {
     public List<Transform> spawnPos = new List<Transform>();
     public GameObject spawnBox;
-    public float boxSpawnCooldown;
+
+    
     
 
     private int previousSpawnIndex = -1;
 
-    public void SpawningEnemyBoxes()
-    {
-        StartCoroutine(SpawnBoxRtn());
-    }
 
-    IEnumerator SpawnBoxRtn()
-    {
-        SpawnBox();
-        yield return new WaitForSeconds(boxSpawnCooldown);
-        StartCoroutine(SpawnBoxRtn());
-    }
 
-    private void SpawnBox()
+    public void SpawnEnemyBox()
     {
        
         int randomIndex;
