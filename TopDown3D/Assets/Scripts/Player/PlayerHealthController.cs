@@ -23,6 +23,7 @@ public class PlayerHealthController : MonoBehaviour
         healthbar.UpdateHealthBar(playerMaxHealth, playerCurrentHealth);
         if (playerCurrentHealth <= 0)
         {
+            GameManager.instance.GameOver();
             playerCurrentHealth = 0f;
             Instantiate(deathEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);

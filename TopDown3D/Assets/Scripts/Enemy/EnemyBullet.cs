@@ -39,19 +39,13 @@ public class EnemyBullet : MonoBehaviour
         } 
     }
 
-    /*private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Wall"))
         {
             Destroy(gameObject);
         }
-        if(collision.gameObject.CompareTag("Player"))
-        {
-            Destroy(gameObject);
-            RandomHitEffectSpawn();
-
-        }
-    }*/
+    }
 
     
 }

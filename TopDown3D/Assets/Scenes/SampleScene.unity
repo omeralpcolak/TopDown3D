@@ -3416,7 +3416,7 @@ Transform:
   m_GameObject: {fileID: 682624680}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.584}
+  m_LocalPosition: {x: 2.47, y: 0, z: 0.659}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3847,6 +3847,7 @@ MonoBehaviour:
   uiBar: {fileID: 971956132}
   elevator: {fileID: 440290940}
   enemyBoxSpawnCd: 10
+  gameCanStart: 0
 --- !u!1001 &747093248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12807,7 +12808,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 2418159226908422747, guid: a88b43829541c4c7591c63188514ffac, type: 3}
   spawnPoint: {fileID: 682624681}
-  spawnPoint2: {fileID: 1838597610}
   bulletCooldown: 0.3
 --- !u!114 &1977989523
 MonoBehaviour:

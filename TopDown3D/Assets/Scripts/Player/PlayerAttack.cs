@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public GameObject bulletPrefab;
-    public Transform spawnPoint, spawnPoint2;
+    public Transform spawnPoint;
     [SerializeField] float bulletCooldown;
 
     float lastShotTime;

@@ -21,12 +21,17 @@ public class EnemyAttack : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CalculateDistance();
-
-        if (distanceToPlayer <= enemyShootingRange)
+        if(playerPos != null)
         {
-            EnemyShooting();
+            CalculateDistance();
+
+            if (distanceToPlayer <= enemyShootingRange)
+            {
+                EnemyShooting();
+            }
         }
+
+        
     }
 
     private void CalculateDistance()

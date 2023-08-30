@@ -17,6 +17,17 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+
+        if (player != null)
+        {
+            FollowThePlayer();
+        }
+        
+    }
+
+
+    private void FollowThePlayer()
+    {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
 
         if (distanceToPlayer > followDistance)
