@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : MonoBehaviour
+public class PlayerAttackTest : MonoBehaviour
 {
     public GameObject bulletPrefab;
+
     public Transform spawnPoint;
+
+    private bool canAttack;
     [SerializeField] float bulletCooldown;
 
     float lastShotTime;
@@ -14,6 +17,25 @@ public class PlayerAttack : MonoBehaviour
     {
         lastShotTime = -bulletCooldown;
     }
+
+    private void Update()
+    {
+        if (canAttack)
+        {
+            SpawnBullet();
+        }
+    }
+
+    public void pointerDown()
+    {
+        canAttack = true;
+    }
+
+    public void pointerUp()
+    {
+        canAttack = false;
+    }
+
 
 
     public void SpawnBullet()
@@ -31,4 +53,5 @@ public class PlayerAttack : MonoBehaviour
         Instantiate(bulletPrefab, spawnPoint.position, Quaternion.LookRotation(playerFacingDirection));
         yield return null;
     }
+
 }
