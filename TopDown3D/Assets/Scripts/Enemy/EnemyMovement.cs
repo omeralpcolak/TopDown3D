@@ -22,6 +22,7 @@ public class EnemyMovement : MonoBehaviour
         {
             FollowThePlayer();
         }
+       
         
     }
 

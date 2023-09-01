@@ -18,9 +18,25 @@ public class EnemyBullet : MonoBehaviour
     {
         playerHealthController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealthController>();
     }
+
+
     private void FixedUpdate()
     {
         transform.Translate(shootingDirection * enemyBulletSpeed * Time.deltaTime);
+    }
+
+    private void Update()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, shootingDirection, out hit, enemyBulletSpeed * Time.deltaTime))
+        {
+            // Check if the ray hit something.
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Walls"))
+            {
+                // Destroy the bullet when it hits a wall.
+                DestroyBullet();
+            }
+        }
     }
 
     public void SetShootingDirection(Vector3 direction)
@@ -33,19 +49,16 @@ public class EnemyBullet : MonoBehaviour
         if (other.tag == "Player")
         {
             playerHealthController.PlayerTakeDamage(enemyBulletDamageAmount);
-            Destroy(gameObject);
-            Instantiate(enemyBulletHitEffect, transform.position, Quaternion.identity);
+            DestroyBullet();
             
         } 
     }
 
-    private void OnCollisionEnter(Collision collision)
+  
+    private void DestroyBullet()
     {
-        if(collision.gameObject.CompareTag("Wall"))
-        {
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
+        Instantiate(enemyBulletHitEffect, transform.position, Quaternion.identity);
     }
-
     
 }

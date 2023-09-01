@@ -31,14 +31,11 @@ public class GameManager : MonoBehaviour
     }
 
     
-
-
     public void GameOver()
     {
-        gameCanStart = false;
+        StartCoroutine(GameOverRtn());
     }
-    
-    
+
 
     public void UIActivasion()
     {
@@ -47,6 +44,20 @@ public class GameManager : MonoBehaviour
         joySticks.GetComponent<CanvasGroup>().DOFade(1, 1f);
         uiBar.gameObject.SetActive(true);
         uiBar.GetComponent<CanvasGroup>().DOFade(1, 1f);
+    }
+
+
+    IEnumerator GameOverRtn()
+    {
+        gameCanStart = false;
+        yield return new WaitForSeconds(2f);
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.GetComponent<EnemyHealthController>().EnemyDeathAtGameOver();
+        }
     }
 
 
@@ -59,6 +70,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(EnemyBoxSpawning());
     }
 
+
     IEnumerator EnemyBoxSpawning()
     {
         if (gameCanStart)
@@ -69,7 +81,6 @@ public class GameManager : MonoBehaviour
         }
         
     }
-
 
 
 }

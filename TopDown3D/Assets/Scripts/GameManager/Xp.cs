@@ -19,7 +19,15 @@ public class Xp : MonoBehaviour
 
     private void Update()
     {
-        XpMovement();
+        if (player != null)
+        {
+            XpMovement();
+        }
+        else
+        {
+            DestroyGameobject();
+        }
+        
     }
 
 
