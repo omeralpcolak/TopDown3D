@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using DG.Tweening;
 
 public class GameManager : MonoBehaviour
@@ -14,6 +16,8 @@ public class GameManager : MonoBehaviour
     public float enemyBoxSpawnCd;
 
     public bool gameCanStart;
+
+    [SerializeField] TMP_Text gameOverTxt;
 
     EnemySpawnController enemySpawnController;
 
@@ -37,7 +41,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void UIActivasion()
+    private void UIActivasion()
     {
 
         joySticks.gameObject.SetActive(true);
@@ -46,11 +50,25 @@ public class GameManager : MonoBehaviour
         uiBar.GetComponent<CanvasGroup>().DOFade(1, 1f);
     }
 
+    private void UIDeactivasion()
+    {
+        joySticks.GetComponent<CanvasGroup>().DOFade(0, 1f).OnComplete(delegate
+        {
+            joySticks.gameObject.SetActive(false);
+        });
+
+        uiBar.GetComponent<CanvasGroup>().DOFade(0, 1f).OnComplete(delegate
+        {
+            uiBar.gameObject.SetActive(false);
+        });
+
+    }
+
 
     IEnumerator GameOverRtn()
     {
         gameCanStart = false;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
@@ -58,6 +76,11 @@ public class GameManager : MonoBehaviour
         {
             enemy.GetComponent<EnemyHealthController>().EnemyDeathAtGameOver();
         }
+        yield return new WaitForSeconds(1f);
+        UIDeactivasion();
+        yield return new WaitForSeconds(1f);
+        gameOverTxt.GetComponent<CanvasGroup>().DOFade(1, 1f);
+
     }
 
 
