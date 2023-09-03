@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections;
-using DG.Tweening;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -26,13 +25,10 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-
         float horizontalInput = movementJoystick.Horizontal;
         float verticalInput = movementJoystick.Vertical;
 
-
-        Vector3 movementDirection = transform.forward * verticalInput + transform.right * horizontalInput;
-
+        Vector3 movementDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
 
         if (movementDirection.magnitude >= 0.1f)
         {
@@ -43,13 +39,19 @@ public class PlayerMovement : MonoBehaviour
             hatAnim.SetBool("running", false);
         }
 
+        float rotationInputHorizontal = rotationJoystick.Horizontal;
+        float rotationInputVertical = rotationJoystick.Vertical;
 
-        float rotationInput = rotationJoystick.Horizontal;
-
-
-        if (Mathf.Abs(rotationInput) >= 0.1f)
+        if (Mathf.Abs(rotationInputHorizontal) >= 0.1f || Mathf.Abs(rotationInputVertical) >= 0.1f)
         {
-            RotatePlayer(rotationInput);
+            
+            float joypos = Mathf.Atan2(rotationJoystick.Vertical, rotationInputHorizontal) * Mathf.Rad2Deg;
+
+            transform.eulerAngles = new Vector3(0, joypos, 0);
+        }
+        else
+        {
+            hatAnim.SetBool("running", false);
         }
 
         if (Mathf.Abs(rotationJoystick.Horizontal) > 0.6 || Mathf.Abs(rotationJoystick.Vertical) > 0.6)
@@ -58,22 +60,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    
-
     void MovePlayer(Vector3 direction)
     {
-
-        Vector3 movementVelocity = direction.normalized * movementSpeed * Time.deltaTime;
-
+        Vector3 movementVelocity = direction * movementSpeed * Time.deltaTime;
         rb.MovePosition(transform.position + movementVelocity);
         hatAnim.SetBool("running", true);
-    }
-
-    void RotatePlayer(float rotationInput)
-    {
-
-        float rotationAngle = rotationInput * rotationSpeed * Time.deltaTime;
-
-        transform.Rotate(Vector3.up, rotationAngle);
     }
 }
