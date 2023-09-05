@@ -29,4 +29,11 @@ public class PlayerHealthController : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void GainHealth(float healthAmount)
+    {
+        playerCurrentHealth += healthAmount;
+        healthbar.UpdateHealthBar(playerMaxHealth, playerCurrentHealth);
+    }
+
 }
