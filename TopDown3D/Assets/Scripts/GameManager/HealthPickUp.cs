@@ -39,9 +39,10 @@ public class HealthPickUp : MonoBehaviour
             if(playerHealthController != null)
             {
                 playerHealthController.GainHealth(healthAmount);
+                StartCoroutine(HealthTxtEffect());
             }
 
-            HealthTxtInst();
+            
 
             transform.DOScale(0, .8f).OnComplete(delegate
             {
@@ -65,11 +66,10 @@ public class HealthPickUp : MonoBehaviour
         .SetLoops(-1, LoopType.Yoyo);
     }
 
-    private void HealthTxtInst()
+    IEnumerator HealthTxtEffect()
     {
-        Vector3 txtPos = transform.position;
-        float randomYoffset = 1.5f;
-        txtPos.y += randomYoffset;
-        Instantiate(healthTxtEffect, txtPos, Quaternion.identity);
+        healthTxtEffect.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        healthTxtEffect.gameObject.SetActive(false);
     }
 }

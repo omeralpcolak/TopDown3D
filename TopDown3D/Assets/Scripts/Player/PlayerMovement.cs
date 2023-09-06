@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     public Joystick movementJoystick;
     public Joystick rotationJoystick;
 
+    
+
     public GameObject hat;
 
     private Rigidbody rb;
@@ -39,26 +41,29 @@ public class PlayerMovement : MonoBehaviour
             hatAnim.SetBool("running", false);
         }
 
+
         float rotationInputHorizontal = rotationJoystick.Horizontal;
         float rotationInputVertical = rotationJoystick.Vertical;
 
+
         if (Mathf.Abs(rotationInputHorizontal) >= 0.1f || Mathf.Abs(rotationInputVertical) >= 0.1f)
         {
-            
-            float joypos = Mathf.Atan2(rotationJoystick.Vertical, rotationInputHorizontal) * Mathf.Rad2Deg;
+
+            float joypos = Mathf.Atan2(rotationInputHorizontal, rotationInputVertical) * Mathf.Rad2Deg;
 
             transform.eulerAngles = new Vector3(0, joypos, 0);
-        }
-        else
-        {
-            hatAnim.SetBool("running", false);
+
+
         }
 
         if (Mathf.Abs(rotationJoystick.Horizontal) > 0.6 || Mathf.Abs(rotationJoystick.Vertical) > 0.6)
         {
             playerAttack.SpawnBullet();
         }
+
+
     }
+
 
     void MovePlayer(Vector3 direction)
     {

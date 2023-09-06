@@ -11,6 +11,7 @@ public class LevelXpController : MonoBehaviour
     [SerializeField] float currentLevel, nextLevel;
     private float targetXp; //it is for xp bar.
 
+    
 
     [SerializeField] TMP_Text currentLevelTxt;
 
@@ -18,6 +19,7 @@ public class LevelXpController : MonoBehaviour
     public Image xpImg;
 
     public GameObject xp;
+    public GameObject levelUpEffect;
 
     public bool canXpInstan;
     public float xpAddingSpeed; //in the xp bar.
@@ -56,6 +58,7 @@ public class LevelXpController : MonoBehaviour
             currentLevel++;
             nextLevel++;
             UpdateXpBar();
+            StartCoroutine(LevelUpEffect());   
         }
     }
 
@@ -77,5 +80,11 @@ public class LevelXpController : MonoBehaviour
         currentLevelTxt.text = "Level " + currentLevel.ToString();
     }
 
+    IEnumerator LevelUpEffect()
+    {
+        levelUpEffect.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        levelUpEffect.gameObject.SetActive(false);
+    }
     
 }
