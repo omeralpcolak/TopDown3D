@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
+
     public float enemyBulletSpeed;
-    public float enemyBulletDamageAmount;
+    public int enemyBulletDamageAmount;
 
     public GameObject enemyBulletHitEffect;
 
@@ -25,19 +26,6 @@ public class EnemyBullet : MonoBehaviour
         transform.Translate(shootingDirection * enemyBulletSpeed * Time.deltaTime);
     }
 
-    private void Update()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, shootingDirection, out hit, enemyBulletSpeed * Time.deltaTime))
-        {
-            // Check if the ray hit something.
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Walls"))
-            {
-                // Destroy the bullet when it hits a wall.
-                DestroyBullet();
-            }
-        }
-    }
 
     public void SetShootingDirection(Vector3 direction)
     {
@@ -46,12 +34,16 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.tag == "Player")
         {
             playerHealthController.PlayerTakeDamage(enemyBulletDamageAmount);
             DestroyBullet();
-            
-        } 
+        }
+        if (other.tag == "Wall")
+        {
+            DestroyBullet();
+        }
     }
 
   

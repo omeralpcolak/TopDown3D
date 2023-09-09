@@ -16,28 +16,20 @@ public class Bullet : MonoBehaviour
     }
 
 
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Enemy"))
-        {
-            Destroy(gameObject);
-            Instantiate(hitEffect, transform.position, transform.rotation);
-            CameraShake.instance.ShakeCamera(1.5f);
-        }
-    }*/
+   
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
             Destroy(gameObject);
             Instantiate(hitEffect, transform.position, transform.rotation);
             RandomHitEffectSpawn();
             CameraShake.instance.ShakeCamera(1.5f);
-            collision.gameObject.GetComponent<EnemyHealthController>().EnemyTakeDamage(bulletDamageAmount);
+            other.gameObject.GetComponent<EnemyHealthController>().EnemyTakeDamage(bulletDamageAmount);
         }
 
-        if (collision.gameObject.CompareTag("Wall"))
+        if (other.gameObject.CompareTag("Wall"))
         {
             Destroy(gameObject);
             Instantiate(wallHitEffect, transform.position, transform.rotation);

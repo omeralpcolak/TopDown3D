@@ -8,7 +8,7 @@ public class EnemyAttack : MonoBehaviour
     float distanceToPlayer;
     public float enemyShootingRange;
     public float enemyBulletSpawnCd;
-    public GameObject enemyBulletPrefab;
+    public EnemyBullet enemyBulletPrefab;
     public Transform enemyBulletPos;
 
     bool canShoot = true;
@@ -53,8 +53,7 @@ public class EnemyAttack : MonoBehaviour
         canShoot = false;
 
         Vector3 shootingDirection = (playerPos.position - enemyBulletPos.position).normalized;
-        GameObject bulletInstance = Instantiate(enemyBulletPrefab, enemyBulletPos.position, Quaternion.identity);
-        EnemyBullet enemyBullet = bulletInstance.GetComponent<EnemyBullet>();
+        EnemyBullet enemyBullet = Instantiate(enemyBulletPrefab, enemyBulletPos.position, Quaternion.identity);
         enemyBullet.SetShootingDirection(shootingDirection);
         
 

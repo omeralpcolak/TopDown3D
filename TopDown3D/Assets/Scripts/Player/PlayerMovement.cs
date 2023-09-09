@@ -55,6 +55,12 @@ public class PlayerMovement : MonoBehaviour
 
 
         }
+        else
+        {
+            transform.eulerAngles = Vector3.zero;
+        }
+
+
 
         if (Mathf.Abs(rotationJoystick.Horizontal) > 0.6 || Mathf.Abs(rotationJoystick.Vertical) > 0.6)
         {

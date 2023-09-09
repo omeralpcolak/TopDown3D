@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 4730061530241762842}
   - component: {fileID: 6086147247284083396}
   - component: {fileID: 7491747276821231171}
-  - component: {fileID: 1441004997771236519}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Enemy
@@ -149,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyShootingRange: 10
   enemyBulletSpawnCd: 1
-  enemyBulletPrefab: {fileID: 725807088267730727, guid: 96476b59e3bc04adbb1f7b53289562f3, type: 3}
+  enemyBulletPrefab: {fileID: 383175123389329907, guid: 96476b59e3bc04adbb1f7b53289562f3, type: 3}
   enemyBulletPos: {fileID: 401790182364305542}
 --- !u!114 &4730061530241762842
 MonoBehaviour:
@@ -206,19 +205,6 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 10
   enemyDeathEffect: {fileID: 6275287106572633912, guid: ae084d74750bd4d639927d01579e9c21, type: 3}
---- !u!114 &1441004997771236519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 228951066102889900}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3dd91af5aaf1498da477536839402fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackCooldown: 2
 --- !u!1 &1204908877057264614
 GameObject:
   m_ObjectHideFlags: 0
