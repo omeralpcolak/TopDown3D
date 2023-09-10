@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,10 +13,14 @@ public class GameManager : MonoBehaviour
     public GameObject joySticks;
     public GameObject uiBar;
     public GameObject elevator;
+    public GameObject restartBtn;
+    public GameObject pauseBtn;
+    public GameObject pausedTxt;
 
     public float enemyBoxSpawnCd;
 
     public bool gameCanStart;
+
 
     [SerializeField] TMP_Text gameOverTxt;
 
@@ -48,6 +53,8 @@ public class GameManager : MonoBehaviour
         joySticks.GetComponent<CanvasGroup>().DOFade(1, 1f);
         uiBar.gameObject.SetActive(true);
         uiBar.GetComponent<CanvasGroup>().DOFade(1, 1f);
+        pauseBtn.gameObject.SetActive(true);
+        pauseBtn.GetComponent<CanvasGroup>().DOFade(1, 1f);
     }
 
     private void UIDeactivasion()
@@ -62,6 +69,30 @@ public class GameManager : MonoBehaviour
             uiBar.gameObject.SetActive(false);
         });
 
+        pauseBtn.GetComponent<CanvasGroup>().DOFade(0, 1f).OnComplete(delegate
+        {
+            pauseBtn.gameObject.SetActive(false);
+        });
+
+    }
+
+    public void ResumeAndPause()
+    {
+        if (Time.timeScale == 0)
+        {
+            Time.timeScale = 1;
+            pausedTxt.gameObject.SetActive(false);
+        }
+        else
+        {
+            Time.timeScale = 0;
+            pausedTxt.gameObject.SetActive(true);
+        }
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("SampleScene");
     }
 
 
@@ -80,6 +111,9 @@ public class GameManager : MonoBehaviour
         UIDeactivasion();
         yield return new WaitForSeconds(1f);
         gameOverTxt.GetComponent<CanvasGroup>().DOFade(1, 1f);
+        yield return new WaitForSeconds(1f);
+        restartBtn.gameObject.SetActive(true);
+        restartBtn.GetComponent<CanvasGroup>().DOFade(1, 1f);
 
     }
 
@@ -105,5 +139,6 @@ public class GameManager : MonoBehaviour
         
     }
 
+    
 
 }
