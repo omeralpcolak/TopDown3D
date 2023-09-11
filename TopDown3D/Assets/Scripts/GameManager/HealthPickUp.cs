@@ -3,34 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class HealthPickUp : MonoBehaviour
+public class HealthPickUp : Powerup
 {
     [SerializeField] float healthAmount = 10f;
-    PlayerHealthController playerHealthController;
 
     public GameObject healthTxtEffect;
 
-    private void Awake()
-    {
-        
-    }
 
     private void Start()
     {
-        playerHealthController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealthController>();
         HealthPickUpAnim();
     }
 
-    private void Update()
-    {
-        if(playerHealthController == null)
-        {
-            transform.DOScale(0, 1f).OnComplete(delegate
-            {
-                Destroy(gameObject);
-            });
-        }
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -41,8 +25,6 @@ public class HealthPickUp : MonoBehaviour
                 playerHealthController.GainHealth(healthAmount);
                 StartCoroutine(HealthTxtEffect());
             }
-
-            
 
             transform.DOScale(0, .8f).OnComplete(delegate
             {
