@@ -13,6 +13,9 @@ public class Powerup : MonoBehaviour
 
     public int healthAmount;
 
+    public float speedMultiplier;
+    public float attackSpeedMultiplier;
+
     private void Awake()
     {
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
@@ -28,21 +31,21 @@ public class Powerup : MonoBehaviour
 
 
                 playerHealthController.GainHealth(healthAmount);
-
+                
 
                 break;
 
             case "AttackSpeed":
 
-                //attack speed powerup logic
-
+                playerAttack.bulletCooldown /= attackSpeedMultiplier;
+                   
 
                 break;
 
             case "MovementSpeed":
 
 
-                //movement speed powerup logic
+                playerMovement.movementSpeed *= speedMultiplier;
 
 
                 break;

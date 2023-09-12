@@ -6,7 +6,7 @@ public class PlayerAttack : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public Transform spawnPoint;
-    [SerializeField] float bulletCooldown;
+    public float bulletCooldown;
 
     float lastShotTime;
 
