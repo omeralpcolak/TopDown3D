@@ -9,6 +9,10 @@ public class Powerup : MonoBehaviour
     [HideInInspector] public PlayerAttack playerAttack;
     [HideInInspector] public PlayerHealthController playerHealthController;
 
+    [HideInInspector] public string powerupName;
+
+    public int healthAmount;
+
     private void Awake()
     {
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
@@ -16,9 +20,33 @@ public class Powerup : MonoBehaviour
         playerHealthController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealthController>();
     }
 
-    public virtual void ApplyPowerup()
+    public void ApplyPowerup(string powerupName)
     {
+        switch (powerupName)
+        {
+            case "Health":
 
+
+                playerHealthController.GainHealth(healthAmount);
+
+
+                break;
+
+            case "AttackSpeed":
+
+                //attack speed powerup logic
+
+
+                break;
+
+            case "MovementSpeed":
+
+
+                //movement speed powerup logic
+
+
+                break;
+        }
     }
 
 }

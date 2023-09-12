@@ -17,7 +17,7 @@ public class PlayerHealthController : MonoBehaviour
     }
 
 
-    public void PlayerTakeDamage(float damageAmount)
+    public void PlayerTakeDamage(int damageAmount)
     {
         playerCurrentHealth -= damageAmount;
         healthbar.UpdateHealthBar(playerMaxHealth, playerCurrentHealth);
@@ -30,7 +30,7 @@ public class PlayerHealthController : MonoBehaviour
         }
     }
 
-    public void GainHealth(float healthAmount)
+    public void GainHealth(int healthAmount)
     {
         playerCurrentHealth += healthAmount;
         healthbar.UpdateHealthBar(playerMaxHealth, playerCurrentHealth);

@@ -9,10 +9,12 @@ public class HealthPickUp : Powerup
 
     public GameObject healthTxtEffect;
 
+    
 
     private void Start()
     {
         HealthPickUpAnim();
+        powerupName = "Health";
     }
 
 
@@ -22,8 +24,9 @@ public class HealthPickUp : Powerup
         {
             if(playerHealthController != null)
             {
-                playerHealthController.GainHealth(healthAmount);
+                ApplyPowerup(powerupName);
                 StartCoroutine(HealthTxtEffect());
+
             }
 
             transform.DOScale(0, .8f).OnComplete(delegate
