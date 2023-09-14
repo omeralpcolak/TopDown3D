@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class HealthPickUp : Powerup
 {
-    [SerializeField] float healthAmount = 10f;
+    
 
     public GameObject healthTxtEffect;
 
@@ -25,13 +25,13 @@ public class HealthPickUp : Powerup
             if(playerHealthController != null)
             {
                 ApplyPowerup(powerupName);
-                StartCoroutine(HealthTxtEffect());
-
+                PowerUpTxtEffect(healthTxtEffect);
+                powerupController.PowerUpPickedUp();
             }
 
             transform.DOScale(0, .8f).OnComplete(delegate
             {
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             });
         }
     }
@@ -49,12 +49,5 @@ public class HealthPickUp : Powerup
 
         transform.DOMove(healthPickMove, 1f)
         .SetLoops(-1, LoopType.Yoyo);
-    }
-
-    IEnumerator HealthTxtEffect()
-    {
-        healthTxtEffect.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
-        healthTxtEffect.gameObject.SetActive(false);
     }
 }
