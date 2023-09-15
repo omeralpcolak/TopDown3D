@@ -10,6 +10,7 @@ public class MovementSpeed : Powerup
 
     void Start()
     {
+        PowerUpAnim(360f, 0.6f);
         powerupName = "MovementSpeed";
     }
 

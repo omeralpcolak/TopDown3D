@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     public bool gameCanStart;
 
+    PowerupController powerupController;
+
 
     [SerializeField] TMP_Text gameOverTxt;
 
@@ -31,6 +33,7 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         enemySpawnController = GetComponent<EnemySpawnController>();
+        powerupController = GetComponent<PowerupController>();
     }
 
     private void Start()
@@ -39,7 +42,6 @@ public class GameManager : MonoBehaviour
         StartCoroutine(GameStartRtn());
     }
 
-    
     public void GameOver()
     {
         StartCoroutine(GameOverRtn());

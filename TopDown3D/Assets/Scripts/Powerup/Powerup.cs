@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 
 public class Powerup : MonoBehaviour
@@ -67,6 +68,20 @@ public class Powerup : MonoBehaviour
         effect.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
         effect.gameObject.SetActive(false);
+    }
+
+
+    public void PowerUpAnim(float rotation,float moveUpwards)
+    {
+        transform.DORotate(new Vector3(0f, rotation, 0f), 1f, RotateMode.FastBeyond360)
+        .SetLoops(-1, LoopType.Restart)
+        .SetRelative()
+        .SetEase(Ease.Linear);
+
+        Vector3 moveUpwardsDir = transform.position + new Vector3(0f, moveUpwards, 0f);
+
+        transform.DOMove(moveUpwardsDir, 1f)
+        .SetLoops(-1, LoopType.Yoyo);
     }
 
 }

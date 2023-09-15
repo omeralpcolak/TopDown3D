@@ -10,6 +10,7 @@ public class AttackSpeed : Powerup
 
     private void Start()
     {
+        PowerUpAnim(360f, 0.6f);
         powerupName = "AttackSpeed";
     }
 

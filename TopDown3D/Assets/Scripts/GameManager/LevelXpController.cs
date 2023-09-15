@@ -8,7 +8,7 @@ public class LevelXpController : MonoBehaviour
 {
     [SerializeField] float currentXp, maxXp;
     [SerializeField] float xpAmount;
-    [SerializeField] float currentLevel, nextLevel;
+    public float currentLevel, nextLevel;
 
     private float targetXp; //it is for xp bar.
 
@@ -23,8 +23,6 @@ public class LevelXpController : MonoBehaviour
     public bool canXpInstan;
     public float xpAddingSpeed; //in the xp bar.
 
-    
-    
     void Start()
     {
         canXpInstan = true;
@@ -40,6 +38,7 @@ public class LevelXpController : MonoBehaviour
         UpdateLevelUI();
 
         xpImg.fillAmount = Mathf.MoveTowards(xpImg.fillAmount, targetXp, xpAddingSpeed * Time.deltaTime);
+
     }
 
 

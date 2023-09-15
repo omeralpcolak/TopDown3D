@@ -13,7 +13,7 @@ public class HealthPickUp : Powerup
 
     private void Start()
     {
-        HealthPickUpAnim();
+        PowerUpAnim(360f, 0.6f);
         powerupName = "Health";
     }
 
@@ -38,16 +38,5 @@ public class HealthPickUp : Powerup
 
 
 
-    private void HealthPickUpAnim()
-    {
-        transform.DORotate(new Vector3(0f, 360f, 0f), 1f, RotateMode.FastBeyond360)
-        .SetLoops(-1, LoopType.Restart)
-        .SetRelative()
-        .SetEase(Ease.Linear);
-
-        Vector3 healthPickMove = transform.position + new Vector3(0f, 0.6f, 0f);
-
-        transform.DOMove(healthPickMove, 1f)
-        .SetLoops(-1, LoopType.Yoyo);
-    }
+    
 }

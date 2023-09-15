@@ -6,54 +6,63 @@ using DG.Tweening;
 public class PowerupController : MonoBehaviour
 {
     public bool canTeleport;
-    public bool canTeleportBack;
     public bool powerupPickedUp = false;
-    private bool hasTeleported=false;
-    
+    public bool hasTeleported;
+
+    public float _currentLevel;
+
+    LevelXpController levelXpController;
 
     public List<GameObject> powerups = new List<GameObject>();
 
     Transform player;
-    [SerializeField] Transform teleportationPos,teleportBackPos;
+    [SerializeField] Transform teleportationPos, teleportBackPos;
 
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        levelXpController = GetComponent<LevelXpController>();
     }
 
 
     private void Update()
     {
-        if(canTeleport && !hasTeleported)
+ 
+
+        if (canTeleport && !hasTeleported)
         {
-            Teleport();
-            ActivatePowerUps();
+            StartCoroutine(Teleport());
             hasTeleported = true;
         }
 
         if (powerupPickedUp)
         {
-            DeactivateOthersPowerUps();
+            StartCoroutine(TeleportBack());
             powerupPickedUp = false;
-            TeleportBack();
+            canTeleport = false;
+
         }
-        
+
     }
 
-    private void Teleport()
+    private IEnumerator Teleport()
     {
         player.position = teleportationPos.position;
+        yield return new WaitForSeconds(2f);
+        ActivatePowerUps();
     }
 
-    private void TeleportBack()
+    private IEnumerator TeleportBack()
     {
+        DeactivateOthersPowerUps();
+        yield return new WaitForSeconds(2f);
         player.position = teleportBackPos.position;
-        
+        hasTeleported = false;
     }
 
     private void DeactivateOthersPowerUps()
     {
-        foreach(GameObject powerup in powerups)
+        foreach (GameObject powerup in powerups)
         {
             powerup.transform.DOScale(0f, 1f).OnComplete(delegate
             {
