@@ -23,11 +23,11 @@ public class GameManager : MonoBehaviour
 
     PowerupController powerupController;
 
-
     [SerializeField] TMP_Text gameOverTxt;
 
     EnemySpawnController enemySpawnController;
 
+    private bool startEnemyBox;
 
     private void Awake()
     {
@@ -38,8 +38,23 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        gameCanStart = true;
         StartCoroutine(GameStartRtn());
+        StartCoroutine(EnemyBoxSpawning()); // Start enemy box spawning at the beginning
+    }
+
+    private void Update()
+    {
+        if (gameCanStart)
+        {
+            if (powerupController.hasTeleported)
+            {
+                StopEnemyBoxSpawning();
+            }
+            else if (!powerupController.powerupPickedUp)
+            {
+                StartEnemyBoxSpawning();
+            }
+        }
     }
 
     public void GameOver()
@@ -47,10 +62,8 @@ public class GameManager : MonoBehaviour
         StartCoroutine(GameOverRtn());
     }
 
-
     private void UIActivasion()
     {
-
         joySticks.gameObject.SetActive(true);
         joySticks.GetComponent<CanvasGroup>().DOFade(1, 1f);
         uiBar.gameObject.SetActive(true);
@@ -75,7 +88,6 @@ public class GameManager : MonoBehaviour
         {
             pauseBtn.gameObject.SetActive(false);
         });
-
     }
 
     public void ResumeAndPause()
@@ -97,7 +109,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("SampleScene");
     }
 
-
     IEnumerator GameOverRtn()
     {
         gameCanStart = false;
@@ -116,9 +127,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         restartBtn.gameObject.SetActive(true);
         restartBtn.GetComponent<CanvasGroup>().DOFade(1, 1f);
-
     }
-
 
     IEnumerator GameStartRtn()
     {
@@ -126,21 +135,30 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(4f);
         UIActivasion();
         yield return new WaitForSeconds(3f);
+        gameCanStart = true;
+    }
+
+    private void StopEnemyBoxSpawning()
+    {
+        // Implement logic to stop enemy box spawning here
+        StopCoroutine(EnemyBoxSpawning());
+    }
+
+    private void StartEnemyBoxSpawning()
+    {
+        // Implement logic to start enemy box spawning here
         StartCoroutine(EnemyBoxSpawning());
     }
 
-
-    IEnumerator EnemyBoxSpawning()
+    private IEnumerator EnemyBoxSpawning()
     {
-        if (gameCanStart)
+        while (gameCanStart)
         {
-            enemySpawnController.SpawnEnemyBox();
+            if (!powerupController.hasTeleported)
+            {
+                enemySpawnController.SpawnEnemyBox();
+            }
             yield return new WaitForSeconds(enemyBoxSpawnCd);
-            StartCoroutine(EnemyBoxSpawning());
         }
-        
     }
-
-    
-
 }

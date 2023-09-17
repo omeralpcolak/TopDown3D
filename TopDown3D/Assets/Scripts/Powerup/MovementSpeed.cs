@@ -22,7 +22,7 @@ public class MovementSpeed : Powerup
             {
                 ApplyPowerup(powerupName);
                 PowerUpTxtEffect(movementSpeedTxt);
-                powerupController.PowerUpPickedUp();
+                powerupController.PowerupPickedUp();
             }
 
             transform.DOScale(0, .8f).OnComplete(delegate

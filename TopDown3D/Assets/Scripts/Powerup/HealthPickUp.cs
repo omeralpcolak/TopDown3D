@@ -26,7 +26,7 @@ public class HealthPickUp : Powerup
             {
                 ApplyPowerup(powerupName);
                 PowerUpTxtEffect(healthTxtEffect);
-                powerupController.PowerUpPickedUp();
+                powerupController.PowerupPickedUp();
             }
 
             transform.DOScale(0, .8f).OnComplete(delegate

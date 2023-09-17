@@ -22,7 +22,7 @@ public class AttackSpeed : Powerup
             {
                 ApplyPowerup(powerupName);
                 PowerUpTxtEffect(attackSpeedTxt);
-                powerupController.PowerUpPickedUp();
+                powerupController.PowerupPickedUp();
             }
 
             transform.DOScale(0, .8f).OnComplete(delegate

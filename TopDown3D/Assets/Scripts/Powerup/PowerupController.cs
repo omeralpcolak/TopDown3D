@@ -9,6 +9,9 @@ public class PowerupController : MonoBehaviour
     public bool powerupPickedUp = false;
     public bool hasTeleported;
 
+    // Declare an event to notify GameManager when hasTeleported changes
+    public event System.Action<bool> OnHasTeleportedChanged;
+
     public float _currentLevel;
 
     LevelXpController levelXpController;
@@ -24,31 +27,28 @@ public class PowerupController : MonoBehaviour
         levelXpController = GetComponent<LevelXpController>();
     }
 
-
     private void Update()
     {
- 
-
         if (canTeleport && !hasTeleported)
         {
             StartCoroutine(Teleport());
-            hasTeleported = true;
         }
 
         if (powerupPickedUp)
         {
             StartCoroutine(TeleportBack());
-            powerupPickedUp = false;
-            canTeleport = false;
-
         }
-
     }
 
     private IEnumerator Teleport()
     {
         player.position = teleportationPos.position;
-        yield return new WaitForSeconds(2f);
+        hasTeleported = true;
+
+        // Notify GameManager that hasTeleported changed
+        OnHasTeleportedChanged?.Invoke(hasTeleported);
+
+        yield return new WaitForSeconds(1.5f);
         ActivatePowerUps();
     }
 
@@ -57,7 +57,12 @@ public class PowerupController : MonoBehaviour
         DeactivateOthersPowerUps();
         yield return new WaitForSeconds(2f);
         player.position = teleportBackPos.position;
+        canTeleport = false;
         hasTeleported = false;
+        powerupPickedUp = false;
+
+        // Notify GameManager that hasTeleported changed
+        OnHasTeleportedChanged?.Invoke(hasTeleported);
     }
 
     private void DeactivateOthersPowerUps()
@@ -80,7 +85,7 @@ public class PowerupController : MonoBehaviour
         }
     }
 
-    public void PowerUpPickedUp()
+    public void PowerupPickedUp()  // Corrected method name
     {
         powerupPickedUp = true;
     }
