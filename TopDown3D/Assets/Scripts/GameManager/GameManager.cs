@@ -45,6 +45,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        ControllingEnemyBoxSpawning();
+    }
+
+    private void ControllingEnemyBoxSpawning()
+    {
         if (gameCanStart)
         {
             if (powerupController.hasTeleported)

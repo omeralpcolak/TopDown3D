@@ -17,6 +17,7 @@ public class PowerupController : MonoBehaviour
 
     Transform player;
     [SerializeField] Transform teleportationPos, teleportBackPos;
+    Vector3 backPosition;
 
     private void Awake()
     {
@@ -25,6 +26,17 @@ public class PowerupController : MonoBehaviour
 
     private void Update()
     {
+
+        CheckingTeleportationConditions();
+    }
+
+    private void CheckingTeleportationConditions()
+    {
+        if (!canTeleport && !hasTeleported && player)
+        {
+            backPosition = player.position;
+        }
+
         if (canTeleport && !hasTeleported)
         {
             StartCoroutine(Teleport());
@@ -35,6 +47,7 @@ public class PowerupController : MonoBehaviour
             StartCoroutine(TeleportBack());
         }
     }
+
 
     private IEnumerator Teleport()
     {
@@ -49,7 +62,7 @@ public class PowerupController : MonoBehaviour
     {
         DeactivateOthersPowerUps();
         yield return new WaitForSeconds(2f);
-        player.position = teleportBackPos.position;
+        player.position = backPosition;
         canTeleport = false;
         hasTeleported = false;
         powerupPickedUp = false;
@@ -76,7 +89,7 @@ public class PowerupController : MonoBehaviour
         }
     }
 
-    public void PowerupPickedUp()  // Corrected method name
+    public void PowerupPickedUp()
     {
         powerupPickedUp = true;
     }
