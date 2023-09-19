@@ -19,15 +19,16 @@ public class GameManager : MonoBehaviour
 
     public float enemyBoxSpawnCd;
 
-    public bool gameCanStart;
+    [HideInInspector]public bool gameCanStart;
 
     PowerupController powerupController;
+    EnemySpawnController enemySpawnController;
 
     [SerializeField] TMP_Text gameOverTxt;
 
-    EnemySpawnController enemySpawnController;
+    Coroutine enemyBoxSpawningCoroutine;
 
-    private bool startEnemyBox;
+
 
     private void Awake()
     {
@@ -39,7 +40,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         StartCoroutine(GameStartRtn());
-        StartCoroutine(EnemyBoxSpawning()); // Start enemy box spawning at the beginning
+        StartCoroutine(EnemyBoxSpawning()); 
     }
 
     private void Update()
@@ -50,7 +51,7 @@ public class GameManager : MonoBehaviour
             {
                 StopEnemyBoxSpawning();
             }
-            else if (!powerupController.powerupPickedUp)
+            else if (!powerupController.hasTeleported)
             {
                 StartEnemyBoxSpawning();
             }
@@ -140,24 +141,26 @@ public class GameManager : MonoBehaviour
 
     private void StopEnemyBoxSpawning()
     {
-        // Implement logic to stop enemy box spawning here
-        StopCoroutine(EnemyBoxSpawning());
+        if (enemyBoxSpawningCoroutine != null)
+        {
+            StopCoroutine(enemyBoxSpawningCoroutine);
+            enemyBoxSpawningCoroutine = null;
+        }
     }
 
     private void StartEnemyBoxSpawning()
     {
-        // Implement logic to start enemy box spawning here
-        StartCoroutine(EnemyBoxSpawning());
+        if(enemyBoxSpawningCoroutine == null)
+        {
+            enemyBoxSpawningCoroutine = StartCoroutine(EnemyBoxSpawning());
+        }
     }
 
     private IEnumerator EnemyBoxSpawning()
     {
         while (gameCanStart)
         {
-            if (!powerupController.hasTeleported)
-            {
-                enemySpawnController.SpawnEnemyBox();
-            }
+            enemySpawnController.SpawnEnemyBox();
             yield return new WaitForSeconds(enemyBoxSpawnCd);
         }
     }
