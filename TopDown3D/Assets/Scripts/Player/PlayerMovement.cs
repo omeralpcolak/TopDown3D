@@ -25,8 +25,12 @@ public class PlayerMovement : MonoBehaviour
         hatAnim = hat.GetComponent<Animator>();
     }
 
+
     void FixedUpdate()
     {
+        MovePlayerPcControlls();
+
+
         float horizontalInput = movementJoystick.Horizontal;
         float verticalInput = movementJoystick.Vertical;
 
@@ -76,5 +80,15 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movementVelocity = direction * movementSpeed * Time.deltaTime;
         rb.MovePosition(transform.position + movementVelocity);
         hatAnim.SetBool("running", true);
+    }
+
+
+    void MovePlayerPcControlls()
+    {
+        float horizontalInput = Input.GetAxis("Horizontal"); // A and D keys or left and right arrow keys
+        float verticalInput = Input.GetAxis("Vertical");     // W and S keys or up and down arrow keys
+
+        Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * movementSpeed;
+        rb.velocity = movement;
     }
 }
