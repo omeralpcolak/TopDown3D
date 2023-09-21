@@ -28,49 +28,52 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        MovePlayerPcControlls();
 
-
-        float horizontalInput = movementJoystick.Horizontal;
-        float verticalInput = movementJoystick.Vertical;
-
-        Vector3 movementDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
-
-        if (movementDirection.magnitude >= 0.1f)
+        if (GameManager.instance.gameCanStart)
         {
-            MovePlayer(movementDirection);
+            MovePlayerPcControlls();
+
+
+            float horizontalInput = movementJoystick.Horizontal;
+            float verticalInput = movementJoystick.Vertical;
+
+            Vector3 movementDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
+
+            if (movementDirection.magnitude >= 0.1f)
+            {
+                MovePlayer(movementDirection);
+            }
+            else
+            {
+                hatAnim.SetBool("running", false);
+            }
+
+
+            float rotationInputHorizontal = rotationJoystick.Horizontal;
+            float rotationInputVertical = rotationJoystick.Vertical;
+
+
+            if (Mathf.Abs(rotationInputHorizontal) >= 0.1f || Mathf.Abs(rotationInputVertical) >= 0.1f)
+            {
+
+                float joypos = Mathf.Atan2(rotationInputHorizontal, rotationInputVertical) * Mathf.Rad2Deg;
+
+                transform.eulerAngles = new Vector3(0, joypos, 0);
+
+
+            }
+            else
+            {
+                transform.eulerAngles = Vector3.zero;
+            }
+
+
+
+            if (Mathf.Abs(rotationJoystick.Horizontal) > 0.6 || Mathf.Abs(rotationJoystick.Vertical) > 0.6)
+            {
+                playerAttack.SpawnBullet();
+            }
         }
-        else
-        {
-            hatAnim.SetBool("running", false);
-        }
-
-
-        float rotationInputHorizontal = rotationJoystick.Horizontal;
-        float rotationInputVertical = rotationJoystick.Vertical;
-
-
-        if (Mathf.Abs(rotationInputHorizontal) >= 0.1f || Mathf.Abs(rotationInputVertical) >= 0.1f)
-        {
-
-            float joypos = Mathf.Atan2(rotationInputHorizontal, rotationInputVertical) * Mathf.Rad2Deg;
-
-            transform.eulerAngles = new Vector3(0, joypos, 0);
-
-
-        }
-        else
-        {
-            transform.eulerAngles = Vector3.zero;
-        }
-
-
-
-        if (Mathf.Abs(rotationJoystick.Horizontal) > 0.6 || Mathf.Abs(rotationJoystick.Vertical) > 0.6)
-        {
-            playerAttack.SpawnBullet();
-        }
-
 
     }
 

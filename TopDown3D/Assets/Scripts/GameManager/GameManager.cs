@@ -12,10 +12,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject joySticks;
     public GameObject uiBar;
-    public GameObject elevator;
     public GameObject restartBtn;
     public GameObject pauseBtn;
     public GameObject pausedTxt;
+    public GameObject player;
+    public GameObject playerSpawnEffect;
 
     public float enemyBoxSpawnCd;
 
@@ -137,10 +138,13 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GameStartRtn()
     {
-        elevator.GetComponent<ElevatorController>().ElevatorMove();
-        yield return new WaitForSeconds(4f);
+        playerSpawnEffect.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        player.transform.DOScale(0.75f, 1f);
+        yield return new WaitForSeconds(1f);
+        playerSpawnEffect.gameObject.SetActive(false);
         UIActivasion();
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1.5f);
         gameCanStart = true;
     }
 
