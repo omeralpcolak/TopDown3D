@@ -93,5 +93,14 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput) * movementSpeed;
         rb.velocity = movement;
+
+        if (rb.velocity.magnitude >= 0.1f)
+        {
+            hatAnim.SetBool("running", true);
+        }
+        else
+        {
+            hatAnim.SetBool("running", false);
+        }
     }
 }

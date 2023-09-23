@@ -19,9 +19,15 @@ public class LevelXpController : MonoBehaviour
     public GameObject xp;
     public GameObject levelUpEffect;
     public GameObject levelUpTxtEffect;
+    public GameObject portal;
 
     public bool canXpInstan;
+    public bool portalSpawned = false;
+
     public float xpAddingSpeed; //in the xp bar.
+    public float levelThresHold;
+
+    public Transform portalPos;
 
     void Start()
     {
@@ -39,6 +45,22 @@ public class LevelXpController : MonoBehaviour
 
         xpImg.fillAmount = Mathf.MoveTowards(xpImg.fillAmount, targetXp, xpAddingSpeed * Time.deltaTime);
 
+        SpawnPortal();
+    }
+
+
+    void SpawnPortal()
+    {
+        if (currentLevel % levelThresHold == 0 && !portalSpawned)
+        {
+            Instantiate(portal, portalPos.position, portalPos.rotation);
+            portalSpawned = true;
+        }
+
+        if(currentLevel % levelThresHold != 0)
+        {
+            portalSpawned = false;
+        }
     }
 
 
