@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
 
     public GameObject joySticks;
     public GameObject uiBar;
-    public GameObject restartBtn;
     public GameObject pauseBtn;
     public GameObject pausedTxt;
     public GameObject player;
@@ -24,8 +23,6 @@ public class GameManager : MonoBehaviour
 
     PowerupController powerupController;
     EnemySpawnController enemySpawnController;
-
-    [SerializeField] TMP_Text gameOverTxt;
 
     Coroutine enemyBoxSpawningCoroutine;
 
@@ -40,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(GameStartRtn());
+        ScreenManager.instance.MainMenuScene();
         StartCoroutine(EnemyBoxSpawning()); 
     }
 
@@ -67,6 +64,11 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         StartCoroutine(GameOverRtn());
+    }
+
+    public void GameStart()
+    {
+        StartCoroutine(GameStartRtn());
     }
 
     private void UIActivasion()
@@ -116,6 +118,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("SampleScene");
     }
 
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
     IEnumerator GameOverRtn()
     {
         gameCanStart = false;
@@ -130,14 +137,16 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         UIDeactivasion();
         yield return new WaitForSeconds(1f);
-        gameOverTxt.GetComponent<CanvasGroup>().DOFade(1, 1f);
-        yield return new WaitForSeconds(1f);
-        restartBtn.gameObject.SetActive(true);
-        restartBtn.GetComponent<CanvasGroup>().DOFade(1, 1f);
+        ScreenManager.instance.GameOverScene();
     }
+
+    
 
     IEnumerator GameStartRtn()
     {
+        ScreenManager.instance.mainMenuScene.GetComponent<CanvasGroup>().DOFade(0, 1f);
+        yield return new WaitForSeconds(1f);
+        ScreenManager.instance.mainMenuScene.gameObject.SetActive(false);
         playerSpawnEffect.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
         player.transform.DOScale(0.75f, 1f);
