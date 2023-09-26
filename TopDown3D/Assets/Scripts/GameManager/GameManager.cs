@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        ScreenManager.instance.MainMenuScene();
+        ScreenManager.instance.ChangeScreen(Screen.MAIN);
         StartCoroutine(EnemyBoxSpawning()); 
     }
 
@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         UIDeactivasion();
         yield return new WaitForSeconds(1f);
-        ScreenManager.instance.GameOverScene();
+        ScreenManager.instance.ChangeScreen(Screen.GAMEOVER);
     }
 
     

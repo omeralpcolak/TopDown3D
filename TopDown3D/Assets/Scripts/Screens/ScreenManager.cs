@@ -8,56 +8,43 @@ public class ScreenManager : MonoBehaviour
 
     public static ScreenManager instance;
 
+    private GameObject currentScreen;
 
     public GameObject mainMenuScene;
-    public GameObject gameNameTxt;
-    public GameObject playBtn;
-    public GameObject quitBtn;
-
     public GameObject gameOverScene;
-    public GameObject gameOverTxt;
-    public GameObject restartBtn;
-
     public GameObject shopScene;
-    public GameObject returnBtn;
-    public GameObject hatDisplay1, hatDisplay2, hatDisplay3;
 
     private void Awake()
     {
         instance = this;
+        currentScreen = mainMenuScene;
     }
 
-    public void MainMenuScene()
-    {
-        StartCoroutine(MainMenuRtn());
 
-    }
-
-    public void GameOverScene()
+    public void ChangeScreen(Screen screen)
     {
-        StartCoroutine(GameOverSceneRtn());
-    }
+        currentScreen.SetActive(false);
+        
 
-    public void ShopScene()
-    {
-        //StartCoroutine(ShopSceneRtn());
-    }
+        switch (screen)
+        {
+            case Screen.MAIN:
+                currentScreen = mainMenuScene;
+                break;
 
-    IEnumerator GameOverSceneRtn()
-    {
-        gameOverTxt.GetComponent<CanvasGroup>().DOFade(1f, 1f);
-        yield return new WaitForSeconds(0.5f);
-        restartBtn.gameObject.SetActive(true);
-        restartBtn.GetComponent<CanvasGroup>().DOFade(1f, 1f);
-    }
+            case Screen.GAMEOVER:
+                currentScreen = gameOverScene;
+                break;
 
-    IEnumerator MainMenuRtn()
-    {
-        gameNameTxt.GetComponent<CanvasGroup>().DOFade(1f, 1f);
-        yield return new WaitForSeconds(0.5f);
-        playBtn.GetComponent<CanvasGroup>().DOFade(1f, 1f);
-        yield return new WaitForSeconds(0.5f);
-        quitBtn.GetComponent<CanvasGroup>().DOFade(1f, 1f);
+            case Screen.SHOP:
+                currentScreen = shopScene;
+                break;
+        }
+
+        currentScreen.SetActive(true);
+        currentScreen.GetComponent<CanvasGroup>().DOFade(1, 1f);
+
+
     }
 
     
