@@ -7,6 +7,7 @@ public class PowerupController : MonoBehaviour
 {
     public bool canTeleport;
     public bool powerupPickedUp = false;
+
     [HideInInspector]public bool hasTeleported;
 
     public event System.Action<bool> OnHasTeleportedChanged;
@@ -15,9 +16,11 @@ public class PowerupController : MonoBehaviour
 
     public List<GameObject> powerups = new List<GameObject>();
 
-    Transform player;
+    private Transform player;
     [SerializeField] Transform teleportationPos, teleportBackPos;
-    Vector3 backPosition;
+    private Vector3 backPosition;
+
+
 
     private void Awake()
     {

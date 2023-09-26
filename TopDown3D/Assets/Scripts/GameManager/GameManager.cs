@@ -19,6 +19,11 @@ public class GameManager : MonoBehaviour
 
     public float enemyBoxSpawnCd;
 
+    public int totalKillCount;
+    public int killCount;
+    [HideInInspector]public int cost;
+    [HideInInspector] public int wallet;
+
     [HideInInspector]public bool gameCanStart;
 
     PowerupController powerupController;
@@ -38,12 +43,14 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ScreenManager.instance.ChangeScreen(Screen.MAIN);
+        killCount = 0;
         StartCoroutine(EnemyBoxSpawning()); 
     }
 
     private void Update()
     {
         ControllingEnemyBoxSpawning();
+        totalKillCount += killCount;
     }
 
     private void ControllingEnemyBoxSpawning()
@@ -111,6 +118,22 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 0;
             pausedTxt.gameObject.SetActive(true);
         }
+    }
+
+    public void Buy()
+    {
+        wallet -= cost;
+        PlayerPrefs.SetInt("Wallet",totalKillCount);
+    }
+
+    public void Shop()
+    {
+        ScreenManager.instance.ChangeScreen(Screen.SHOP);
+    }
+
+    public void Return()
+    {
+        ScreenManager.instance.ChangeScreen(Screen.MAIN);
     }
 
     public void Restart()

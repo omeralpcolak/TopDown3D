@@ -22,6 +22,7 @@ public class EnemyHealthController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            GameManager.instance.killCount++;
             StartCoroutine(EnemyDeathRtn());
         }
     }
