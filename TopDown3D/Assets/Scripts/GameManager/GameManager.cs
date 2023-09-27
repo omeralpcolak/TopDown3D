@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector]public bool gameCanStart;
 
     PowerupController powerupController;
+
     EnemySpawnController enemySpawnController;
 
     Coroutine enemyBoxSpawningCoroutine;
@@ -43,14 +44,14 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ScreenManager.instance.ChangeScreen(Screen.MAIN);
-        killCount = 0;
         StartCoroutine(EnemyBoxSpawning()); 
     }
 
     private void Update()
     {
         ControllingEnemyBoxSpawning();
-        totalKillCount += killCount;
+        PlayerPrefs.SetInt("Wallet", killCount);
+        wallet = PlayerPrefs.GetInt("Wallet");
     }
 
     private void ControllingEnemyBoxSpawning()
@@ -138,7 +139,8 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene("SampleScene");
+        //SceneManager.LoadScene("SampleScene");
+        ScreenManager.instance.ChangeScreen(Screen.MAIN);
     }
 
     public void Quit()

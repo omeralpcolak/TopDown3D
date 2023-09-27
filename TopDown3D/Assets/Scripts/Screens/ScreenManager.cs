@@ -23,6 +23,11 @@ public class ScreenManager : MonoBehaviour
         currentScreen = mainMenuScene;
     }
 
+    private void Start()
+    {
+        UpdateTexts();
+        CheckWallet();
+    }
 
     public void ChangeScreen(Screen screen)
     {
@@ -42,7 +47,7 @@ public class ScreenManager : MonoBehaviour
 
             case Screen.SHOP:
                 currentScreen = shopScene;
-                CheckTexts();
+                UpdateTexts();
                 CheckWallet();
                 break;
         }
@@ -52,9 +57,9 @@ public class ScreenManager : MonoBehaviour
 
     }
 
-    void CheckTexts()
+    void UpdateTexts()
     {
-        walletTxt.text = GameManager.instance.totalKillCount.ToString();
+        walletTxt.text = GameManager.instance.wallet.ToString();
     }
 
     void CheckWallet()
