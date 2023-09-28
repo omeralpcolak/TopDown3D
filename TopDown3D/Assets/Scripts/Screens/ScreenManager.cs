@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using UnityEngine.UI;
 
 public class ScreenManager : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class ScreenManager : MonoBehaviour
     public GameObject shopScene;
 
     public TMP_Text walletTxt;
+
+    public List<Button> buttons = new List<Button>();
+
 
     private void Awake()
     {
@@ -67,13 +71,16 @@ public class ScreenManager : MonoBehaviour
         int wallet = GameManager.instance.killCount;
         int cost = GameManager.instance.cost;
 
-        if (wallet < cost)
+        foreach (Button button in buttons)
         {
-            //Button can not interactable.
-        }
-        else
-        {
-            //Button can be interactable.
+            if (wallet < cost)
+            {
+                button.interactable = false;
+            }
+            else
+            {
+                button.interactable = true;
+            }
         }
 
     }
