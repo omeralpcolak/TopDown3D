@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        wallet = PlayerPrefs.GetInt("Wallet", 0);
         ScreenManager.instance.ChangeScreen(Screen.MAIN);
         StartCoroutine(EnemyBoxSpawning()); 
     }
@@ -50,8 +51,18 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         ControllingEnemyBoxSpawning();
-        PlayerPrefs.SetInt("Wallet", killCount);
-        wallet = PlayerPrefs.GetInt("Wallet");
+        
+    }
+
+    public void GainSoul()
+    {
+        
+        killCount++;
+        wallet = killCount;
+        PlayerPrefs.SetInt("Wallet", wallet);
+        PlayerPrefs.Save(); 
+        
+
     }
 
     private void ControllingEnemyBoxSpawning()

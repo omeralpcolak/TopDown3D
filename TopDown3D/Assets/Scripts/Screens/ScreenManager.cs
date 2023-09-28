@@ -64,7 +64,7 @@ public class ScreenManager : MonoBehaviour
 
     void CheckWallet()
     {
-        int wallet = GameManager.instance.wallet;
+        int wallet = GameManager.instance.killCount;
         int cost = GameManager.instance.cost;
 
         if (wallet < cost)
