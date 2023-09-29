@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     public int totalKillCount;
     public int killCount;
-    [HideInInspector]public int cost;
+
     [HideInInspector] public int wallet;
 
     [HideInInspector]public bool gameCanStart;
@@ -132,10 +132,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Buy()
+    public void Buy(int cost)
     {
         wallet -= cost;
-        PlayerPrefs.SetInt("Wallet",totalKillCount);
+        PlayerPrefs.SetInt("Wallet",wallet);
     }
 
     public void Shop()

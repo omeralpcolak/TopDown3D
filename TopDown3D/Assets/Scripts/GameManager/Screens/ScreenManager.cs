@@ -29,7 +29,10 @@ public class ScreenManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateTexts();
+        
+    }
+    private void Update()
+    {
         CheckWallet();
     }
 
@@ -69,11 +72,12 @@ public class ScreenManager : MonoBehaviour
     void CheckWallet()
     {
         int wallet = GameManager.instance.killCount;
-        int cost = GameManager.instance.cost;
 
-        foreach (Button button in buttons)
+        /*foreach (Button button in buttons)
         {
-            if (wallet < cost)
+            int price = button.GetComponent<OnSale>().itemPrice;
+
+            if (wallet < price)
             {
                 button.interactable = false;
             }
@@ -81,7 +85,7 @@ public class ScreenManager : MonoBehaviour
             {
                 button.interactable = true;
             }
-        }
+        }*/
 
     }
 
