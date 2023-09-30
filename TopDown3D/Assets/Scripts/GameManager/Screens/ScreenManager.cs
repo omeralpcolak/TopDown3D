@@ -64,16 +64,16 @@ public class ScreenManager : MonoBehaviour
 
     }
 
-    void UpdateTexts()
+    public void UpdateTexts()
     {
         walletTxt.text = GameManager.instance.wallet.ToString();
     }
 
-    void CheckWallet()
+    public void CheckWallet()
     {
-        int wallet = GameManager.instance.killCount;
+        int wallet = GameManager.instance.wallet;
 
-        /*foreach (Button button in buttons)
+        foreach (Button button in buttons)
         {
             int price = button.GetComponent<OnSale>().itemPrice;
 
@@ -85,7 +85,7 @@ public class ScreenManager : MonoBehaviour
             {
                 button.interactable = true;
             }
-        }*/
+        }
 
     }
 

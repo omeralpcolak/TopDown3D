@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
 
     public float enemyBoxSpawnCd;
 
-    public int totalKillCount;
     public int killCount;
 
     [HideInInspector] public int wallet;
@@ -136,6 +135,7 @@ public class GameManager : MonoBehaviour
     {
         wallet -= cost;
         PlayerPrefs.SetInt("Wallet",wallet);
+        ScreenManager.instance.UpdateTexts();
     }
 
     public void Shop()
