@@ -11,13 +11,24 @@ public class OnSale : MonoBehaviour
     public TMP_Text itemNameTxt;
     public TMP_Text itemPriceTxt;
 
-
-    private void Start()
+    public void Initialize(string itemName, int itemPrice)
     {
-        ItemInfo();
+        this.itemName = itemName;
+        this.itemPrice = itemPrice;
+
+        UpdateUI();
     }
 
-    public void ItemInfo()
+    public void UpdateUI()
+    {
+        itemNameTxt.text = itemName;
+        itemPriceTxt.text = itemPrice.ToString();
+
+
+    }
+
+
+    /*public void ItemInfo()
     {
 
         switch (itemName)
@@ -40,7 +51,5 @@ public class OnSale : MonoBehaviour
 
                    
         }
-    }
-
-
+    }*/
 }

@@ -32,6 +32,11 @@ public class GameManager : MonoBehaviour
     Coroutine enemyBoxSpawningCoroutine;
 
 
+    public OnSale vikingHat;
+    public OnSale wizardHat;
+    public OnSale sleepingHat;
+
+
 
     private void Awake()
     {
@@ -44,7 +49,12 @@ public class GameManager : MonoBehaviour
     {
         wallet = PlayerPrefs.GetInt("Wallet", 0);
         ScreenManager.instance.ChangeScreen(Screen.MAIN);
-        StartCoroutine(EnemyBoxSpawning()); 
+        StartCoroutine(EnemyBoxSpawning());
+
+        vikingHat.Initialize("Viking Hat", 150);
+        wizardHat.Initialize("Wizard Hat", 300);
+        sleepingHat.Initialize("Sleeping Hat", 10);
+
     }
 
     private void Update()
@@ -136,6 +146,7 @@ public class GameManager : MonoBehaviour
         wallet -= cost;
         PlayerPrefs.SetInt("Wallet",wallet);
         ScreenManager.instance.UpdateTexts();
+
     }
 
     public void Shop()
@@ -175,8 +186,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         ScreenManager.instance.ChangeScreen(Screen.GAMEOVER);
     }
-
-    
 
     IEnumerator GameStartRtn()
     {
