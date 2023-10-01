@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     public int killCount;
 
-    [HideInInspector] public int wallet;
+    public int wallet;
 
     [HideInInspector]public bool gameCanStart;
 
@@ -65,11 +65,11 @@ public class GameManager : MonoBehaviour
 
     public void GainSoul()
     {
-        
+
         killCount++;
-        wallet = killCount;
-        PlayerPrefs.SetInt("Wallet", wallet);
-        PlayerPrefs.Save(); 
+        wallet += killCount;
+        killCount = 0;
+        SaveWallet();
         
 
     }
@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         StartCoroutine(GameOverRtn());
+        SaveWallet();
     }
 
     public void GameStart()
@@ -141,12 +142,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Buy(int cost)
+    public void Buy(OnSale item)
     {
-        wallet -= cost;
-        PlayerPrefs.SetInt("Wallet",wallet);
+        wallet -= item.itemPrice;
+        SaveWallet();
         ScreenManager.instance.UpdateTexts();
 
+    }
+
+    public void SaveWallet()
+    {
+        PlayerPrefs.SetInt("Wallet", wallet);
+        PlayerPrefs.Save();
     }
 
     public void Shop()
@@ -193,6 +200,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         ScreenManager.instance.mainMenuScene.gameObject.SetActive(false);
         playerSpawnEffect.gameObject.SetActive(true);
+        player.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
         player.transform.DOScale(0.75f, 1f);
         yield return new WaitForSeconds(1f);

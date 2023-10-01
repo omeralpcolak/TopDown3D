@@ -16,10 +16,10 @@ public class OnSale : MonoBehaviour
         this.itemName = itemName;
         this.itemPrice = itemPrice;
 
-        UpdateUI();
+        UpdatePrices();
     }
 
-    public void UpdateUI()
+    public void UpdatePrices()
     {
         itemNameTxt.text = itemName;
         itemPriceTxt.text = itemPrice.ToString();

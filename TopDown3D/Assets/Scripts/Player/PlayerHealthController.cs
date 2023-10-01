@@ -26,7 +26,7 @@ public class PlayerHealthController : MonoBehaviour
             GameManager.instance.GameOver();
             playerCurrentHealth = 0f;
             Instantiate(deathEffect, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
