@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject playerSpawnEffect;
 
+    public Transform playerInitPos;
+
     public float enemyBoxSpawnCd;
 
     public int killCount;
@@ -168,8 +170,8 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
-        //SceneManager.LoadScene("SampleScene");
-        ScreenManager.instance.ChangeScreen(Screen.MAIN);
+        SceneManager.LoadScene("SampleScene");
+        //ScreenManager.instance.ChangeScreen(Screen.MAIN);
     }
 
     public void Quit()
@@ -200,6 +202,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         ScreenManager.instance.mainMenuScene.gameObject.SetActive(false);
         playerSpawnEffect.gameObject.SetActive(true);
+        player.transform.position = playerInitPos.position;
         player.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
         player.transform.DOScale(0.75f, 1f);
