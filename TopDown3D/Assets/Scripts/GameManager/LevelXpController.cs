@@ -45,22 +45,25 @@ public class LevelXpController : MonoBehaviour
 
         xpImg.fillAmount = Mathf.MoveTowards(xpImg.fillAmount, targetXp, xpAddingSpeed * Time.deltaTime);
 
+
         SpawnPortal();
     }
 
 
     void SpawnPortal()
     {
+
         if (currentLevel % levelThresHold == 0 && !portalSpawned)
         {
             Instantiate(portal, portalPos.position, portalPos.rotation);
             portalSpawned = true;
         }
 
-        if(currentLevel % levelThresHold != 0)
+        if (currentLevel % levelThresHold != 0)
         {
             portalSpawned = false;
         }
+
     }
 
 
