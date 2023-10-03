@@ -24,8 +24,10 @@ public class PlayerHealthController : MonoBehaviour
     public void PlayerTakeDamage(int damageAmount)
     {
         playerCurrentHealth -= damageAmount;
-        StartCoroutine(TakeDamageUIRtn(0.1f));
+        StartCoroutine(TakeDamageUIRtn(0.2f));
+        CameraShake.instance.ShakeCamera(1f);
         healthbar.UpdateHealthBar(playerMaxHealth, playerCurrentHealth);
+
         if (playerCurrentHealth <= 0)
         {
             GameManager.instance.GameOver();
@@ -38,9 +40,9 @@ public class PlayerHealthController : MonoBehaviour
 
     IEnumerator TakeDamageUIRtn(float uiDuration)
     {
-        takeDamageUI.GetComponent<CanvasGroup>().DOFade(0.05f, 0.1f);
+        takeDamageUI.GetComponent<CanvasGroup>().DOFade(0.05f, uiDuration);
         yield return new WaitForSeconds(uiDuration);
-        takeDamageUI.GetComponent<CanvasGroup>().DOFade(0f, 0.1f);
+        takeDamageUI.GetComponent<CanvasGroup>().DOFade(0f, uiDuration*0.15f);
 
     }
 

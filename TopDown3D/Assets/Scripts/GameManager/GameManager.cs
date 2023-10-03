@@ -21,22 +21,14 @@ public class GameManager : MonoBehaviour
 
     public float enemyBoxSpawnCd;
 
-    public int killCount;
-
-    public int wallet;
-
     [HideInInspector]public bool gameCanStart;
 
     PowerupController powerupController;
-
     EnemySpawnController enemySpawnController;
+    ShopManager shopManager;
 
     Coroutine enemyBoxSpawningCoroutine;
 
-
-    public OnSale vikingHat;
-    public OnSale wizardHat;
-    public OnSale sleepingHat;
 
 
 
@@ -45,17 +37,16 @@ public class GameManager : MonoBehaviour
         instance = this;
         enemySpawnController = GetComponent<EnemySpawnController>();
         powerupController = GetComponent<PowerupController>();
+        shopManager = GetComponent<ShopManager>();
     }
 
     private void Start()
     {
-        wallet = PlayerPrefs.GetInt("Wallet", 0);
+        
         ScreenManager.instance.ChangeScreen(Screen.MAIN);
         StartCoroutine(EnemyBoxSpawning());
 
-        vikingHat.Initialize("Viking Hat", 150);
-        wizardHat.Initialize("Wizard Hat", 300);
-        sleepingHat.Initialize("Sleeping Hat", 10);
+        
 
     }
 
@@ -65,16 +56,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void GainSoul()
-    {
-
-        killCount++;
-        wallet += killCount;
-        killCount = 0;
-        SaveWallet();
-        
-
-    }
+    
 
     private void ControllingEnemyBoxSpawning()
     {
@@ -94,7 +76,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         StartCoroutine(GameOverRtn());
-        SaveWallet();
+        shopManager.SaveWallet();
     }
 
     public void GameStart()
@@ -144,19 +126,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void Buy(OnSale item)
-    {
-        wallet -= item.itemPrice;
-        SaveWallet();
-        ScreenManager.instance.UpdateTexts();
-
-    }
-
-    public void SaveWallet()
-    {
-        PlayerPrefs.SetInt("Wallet", wallet);
-        PlayerPrefs.Save();
-    }
+    
 
     public void Shop()
     {

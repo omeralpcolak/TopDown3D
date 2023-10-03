@@ -44,9 +44,9 @@ public class LevelXpController : MonoBehaviour
         UpdateLevelUI();
 
         xpImg.fillAmount = Mathf.MoveTowards(xpImg.fillAmount, targetXp, xpAddingSpeed * Time.deltaTime);
-
-
         SpawnPortal();
+
+        DestroyXps();
     }
 
 
@@ -64,6 +64,19 @@ public class LevelXpController : MonoBehaviour
             portalSpawned = false;
         }
 
+    }
+
+    void DestroyXps()
+    {
+        if (!GameManager.instance.gameCanStart)
+        {
+            GameObject[] xpObjs = GameObject.FindGameObjectsWithTag("Xp");
+
+            foreach(GameObject xpObj in xpObjs)
+            {
+                Destroy(xpObj);
+            }
+        }
     }
 
 

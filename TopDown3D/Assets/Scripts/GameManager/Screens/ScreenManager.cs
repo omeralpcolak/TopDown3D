@@ -10,6 +10,8 @@ public class ScreenManager : MonoBehaviour
 
     public static ScreenManager instance;
 
+    ShopManager shopManager;
+
     private GameObject currentScreen;
 
     public GameObject mainMenuScene;
@@ -23,6 +25,7 @@ public class ScreenManager : MonoBehaviour
 
     private void Awake()
     {
+        shopManager = GetComponent<ShopManager>();
         instance = this;
         currentScreen = mainMenuScene;
     }
@@ -66,12 +69,12 @@ public class ScreenManager : MonoBehaviour
 
     public void UpdateTexts()
     {
-        walletTxt.text = GameManager.instance.wallet.ToString();
+        walletTxt.text = shopManager.wallet.ToString();
     }
 
     public void CheckWallet()
     {
-        int wallet = GameManager.instance.wallet;
+        int wallet = shopManager.wallet;
 
         foreach (Button button in buttons)
         {

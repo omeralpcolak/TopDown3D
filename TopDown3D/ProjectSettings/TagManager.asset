@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - FxTemporaire
   - GameManager
+  - Xp
   layers:
   - Default
   - TransparentFX

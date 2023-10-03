@@ -22,7 +22,7 @@ public class EnemyHealthController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            GameManager.instance.GainSoul();
+            GameManager.instance.GetComponent<ShopManager>().GainSoul();
             StartCoroutine(EnemyDeathRtn());
         }
     }
