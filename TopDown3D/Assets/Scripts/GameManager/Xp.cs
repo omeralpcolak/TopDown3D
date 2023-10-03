@@ -5,10 +5,16 @@ using DG.Tweening;
 
 public class Xp : MonoBehaviour
 {
-     PlayerMovement player;
+    PlayerMovement player;
+
     public float movementDuration;
     public float rotationDuration;
+
+    private bool hasHit = false;
+
     LevelXpController levelXpController;
+
+
 
     private void Start()
     {
@@ -33,8 +39,9 @@ public class Xp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !hasHit)
         {
+            hasHit = true;
             DestroyGameobject();
             levelXpController.GainXp();
             levelXpController.UpdateXpBar();
@@ -51,7 +58,9 @@ public class Xp : MonoBehaviour
 
     private void XpMovement()
     {
-        transform.DOMove(player.transform.position, movementDuration);
+        transform.DOMove(player.transform.position, movementDuration)
+            .SetEase(Ease.Linear);
+        
     }
 
     private void DestroyGameobject()

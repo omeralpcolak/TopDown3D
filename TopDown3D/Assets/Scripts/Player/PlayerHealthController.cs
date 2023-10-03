@@ -30,8 +30,8 @@ public class PlayerHealthController : MonoBehaviour
 
         if (playerCurrentHealth <= 0)
         {
+            takeDamageUI.gameObject.SetActive(false);
             GameManager.instance.GameOver();
-            takeDamageUI.GetComponent<CanvasGroup>().DOFade(0f, 0.1f);
             playerCurrentHealth = 0f;
             Instantiate(deathEffect, transform.position, Quaternion.identity);
             gameObject.SetActive(false);

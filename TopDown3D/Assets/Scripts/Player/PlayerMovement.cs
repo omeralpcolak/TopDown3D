@@ -9,8 +9,6 @@ public class PlayerMovement : MonoBehaviour
     public Joystick movementJoystick;
     public Joystick rotationJoystick;
 
-    
-
     public GameObject hat;
 
     private Rigidbody rb;
@@ -58,14 +56,11 @@ public class PlayerMovement : MonoBehaviour
                 float joypos = Mathf.Atan2(rotationInputHorizontal, rotationInputVertical) * Mathf.Rad2Deg;
 
                 transform.eulerAngles = new Vector3(0, joypos, 0);
-
-
             }
             else
             {
                 transform.eulerAngles = Vector3.zero;
             }
-
 
 
             if (Mathf.Abs(rotationJoystick.Horizontal) > 0.6 || Mathf.Abs(rotationJoystick.Vertical) > 0.6)
@@ -96,12 +91,10 @@ public class PlayerMovement : MonoBehaviour
         if (rb.velocity.magnitude >= 0.1f)
         {
             hatAnim.SetBool("running", true);
-            Debug.Log("anim is working!!");
         }
         else
         {
             hatAnim.SetBool("running", false);
-            Debug.Log("anim is not working!!");
         }
     }
 }
