@@ -12,8 +12,6 @@ public class ShopManager : MonoBehaviour
     public OnSale wizardHat;
     public OnSale sleepingHat;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         wallet = PlayerPrefs.GetInt("Wallet", 0);

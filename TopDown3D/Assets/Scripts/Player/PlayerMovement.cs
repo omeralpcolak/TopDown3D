@@ -33,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
         {
             MovePlayerPcControlls();
 
-
             float horizontalInput = movementJoystick.Horizontal;
             float verticalInput = movementJoystick.Vertical;
 
@@ -45,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                hatAnim.SetBool("running", false);
+                //hatAnim.SetBool("running", false);
             }
 
 
@@ -97,10 +96,12 @@ public class PlayerMovement : MonoBehaviour
         if (rb.velocity.magnitude >= 0.1f)
         {
             hatAnim.SetBool("running", true);
+            Debug.Log("anim is working!!");
         }
         else
         {
             hatAnim.SetBool("running", false);
+            Debug.Log("anim is not working!!");
         }
     }
 }
