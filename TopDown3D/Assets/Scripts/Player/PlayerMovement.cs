@@ -14,13 +14,20 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     PlayerAttack playerAttack;
 
-    Animator hatAnim;
+    //Animator hatAnim;
+
+    ShopManager shopManager;
+
+    private void Awake()
+    {
+        shopManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ShopManager>();
+    }
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         playerAttack = GetComponent<PlayerAttack>();
-        hatAnim = hat.GetComponent<Animator>();
+        //hatAnim = hat.GetComponent<Animator>();
     }
 
 
@@ -76,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 movementVelocity = direction * movementSpeed * Time.deltaTime;
         rb.MovePosition(transform.position + movementVelocity);
-        hatAnim.SetBool("running", true);
+        //hatAnim.SetBool("running", true);
     }
 
 
@@ -90,11 +97,22 @@ public class PlayerMovement : MonoBehaviour
 
         if (rb.velocity.magnitude >= 0.1f)
         {
-            hatAnim.SetBool("running", true);
+            //hatAnim.SetBool("running", true);
+            if(shopManager.equippedObj != null)
+            {
+                Animator hatAnim = shopManager.equippedObj.GetComponent<Animator>();
+                hatAnim.SetBool("running", true);
+                Debug.Log(hatAnim.name);
+            }
         }
         else
         {
-            hatAnim.SetBool("running", false);
+            //hatAnim.SetBool("running", false);
+            if (shopManager.equippedObj != null)
+            {
+                Animator hatAnim = shopManager.equippedObj.GetComponent<Animator>();
+                hatAnim.SetBool("running", false);
+            }
         }
     }
 }

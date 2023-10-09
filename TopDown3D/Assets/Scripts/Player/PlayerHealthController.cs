@@ -24,8 +24,8 @@ public class PlayerHealthController : MonoBehaviour
     public void PlayerTakeDamage(int damageAmount)
     {
         playerCurrentHealth -= damageAmount;
-        StartCoroutine(TakeDamageUIRtn(0.2f));
         CameraShake.instance.ShakeCamera(1f);
+        DamageUIFade(0.4f);
         healthbar.UpdateHealthBar(playerMaxHealth, playerCurrentHealth);
 
         if (playerCurrentHealth <= 0)
@@ -38,12 +38,26 @@ public class PlayerHealthController : MonoBehaviour
         }
     }
 
-    IEnumerator TakeDamageUIRtn(float uiDuration)
+    /*IEnumerator TakeDamageUIRtn(float uiDuration)
     {
-        takeDamageUI.GetComponent<CanvasGroup>().DOFade(0.05f, uiDuration);
+        CanvasGroup fade = takeDamageUI.GetComponent<CanvasGroup>();
+        fade.DOFade(0.4f, uiDuration).OnComplete(delegate
+        {
+            fade.DOFade(0, uiDuration);
+        });
+        yield return null;
         yield return new WaitForSeconds(uiDuration);
-        takeDamageUI.GetComponent<CanvasGroup>().DOFade(0f, uiDuration*0.15f);
+        takeDamageUI.GetComponent<CanvasGroup>().DOFade(0f, uiDuration);
 
+    }*/
+
+    private void DamageUIFade(float uiDuration)
+    {
+        CanvasGroup fade = takeDamageUI.GetComponent<CanvasGroup>();
+        fade.DOFade(0.4f, uiDuration).OnComplete(delegate
+        {
+            fade.DOFade(0, uiDuration);
+        });
     }
 
     public void GainHealth(int healthAmount)

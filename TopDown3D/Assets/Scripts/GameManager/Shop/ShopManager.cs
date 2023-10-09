@@ -17,7 +17,7 @@ public class ShopManager : MonoBehaviour
     public GameObject sleepingHatObj;
     public GameObject mexicanHatObj;
 
-    private GameObject equippedObj; 
+    public GameObject equippedObj; 
 
     private const string EquippedItemKey = "EquippedItem";
 
