@@ -25,8 +25,8 @@ public class ShopManager : MonoBehaviour
     {
         wallet = PlayerPrefs.GetInt("Wallet", 0);
 
-        vikingHat.Initialize("Viking Hat", 150, vikingHatObj);
-        wizardHat.Initialize("Wizard Hat", 300, wizardHatObj);
+        vikingHat.Initialize("Viking Hat", 10, vikingHatObj);
+        wizardHat.Initialize("Wizard Hat", 10, wizardHatObj);
         sleepingHat.Initialize("Sleeping Hat", 10, sleepingHatObj);
         mexicanHat.Initialize("Sombrero", 0, mexicanHatObj);
 
