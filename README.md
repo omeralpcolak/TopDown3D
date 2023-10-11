@@ -16,3 +16,11 @@ Power ups were made for the player:
 Shop scene :
 
 ![equippingitems](https://github.com/omeralpcolak/TopDown3D/assets/112391850/f09b02cb-70a9-43b0-a2df-fb2eada9924a)
+
+Simple menu transitioning: 
+
+![scenetransition](https://github.com/omeralpcolak/TopDown3D/assets/112391850/a6a8fccb-588a-424a-b2f1-e98f018623f9)
+
+
+
+
