@@ -15,9 +15,8 @@ public class GameManager : MonoBehaviour
     public GameObject pauseBtn;
     public GameObject pausedTxt;
     public GameObject player;
-    public GameObject playerSpawnEffect;
 
-    public Transform playerInitPos;
+    public Vector3 shopSceneOffset;
 
     public float enemyBoxSpawnCd;
 
@@ -27,9 +26,9 @@ public class GameManager : MonoBehaviour
     EnemySpawnController enemySpawnController;
     ShopManager shopManager;
 
+    public CameraController cameraController;
+
     Coroutine enemyBoxSpawningCoroutine;
-
-
 
 
     private void Awake()
@@ -45,9 +44,6 @@ public class GameManager : MonoBehaviour
         
         ScreenManager.instance.ChangeScreen(Screen.MAIN);
         StartCoroutine(EnemyBoxSpawning());
-
-        
-
     }
 
     private void Update()
@@ -56,7 +52,6 @@ public class GameManager : MonoBehaviour
         
     }
 
-    
 
     private void ControllingEnemyBoxSpawning()
     {
@@ -131,11 +126,13 @@ public class GameManager : MonoBehaviour
     public void Shop()
     {
         ScreenManager.instance.ChangeScreen(Screen.SHOP);
+        cameraController.ChangeOffset(shopSceneOffset);
     }
 
     public void Return()
     {
         ScreenManager.instance.ChangeScreen(Screen.MAIN);
+        cameraController.ResetOffset();
     }
 
     public void Restart()
@@ -171,13 +168,10 @@ public class GameManager : MonoBehaviour
         ScreenManager.instance.mainMenuScene.GetComponent<CanvasGroup>().DOFade(0, 1f);
         yield return new WaitForSeconds(1f);
         ScreenManager.instance.mainMenuScene.gameObject.SetActive(false);
-        playerSpawnEffect.gameObject.SetActive(true);
-        player.transform.position = playerInitPos.position;
         player.gameObject.SetActive(true);
         yield return new WaitForSeconds(1f);
-        player.transform.DOScale(0.75f, 1f);
+        //cameraController.ChangeOffset(playingOffset);
         yield return new WaitForSeconds(1f);
-        playerSpawnEffect.gameObject.SetActive(false);
         UIActivasion();
         yield return new WaitForSeconds(1.5f);
         gameCanStart = true;
