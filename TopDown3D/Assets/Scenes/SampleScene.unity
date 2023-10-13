@@ -3558,7 +3558,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412263126}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.48153362, y: 0.000000045240434, z: -0.000000024856348, w: 0.87642765}
+  m_LocalRotation: {x: 0.48219556, y: 0.000000015073883, z: -0.000000008296839, w: 0.87606364}
   m_LocalPosition: {x: 0, y: 25, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3579,8 +3579,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1094661138}
-  offset: {x: 0, y: 26, z: -15}
-  smoothSpeed: 0.125
+  offset: {x: 0, y: 25, z: -15}
+  smoothSpeed: 0.2
 --- !u!1 &420814223
 GameObject:
   m_ObjectHideFlags: 0
@@ -5171,7 +5171,7 @@ Transform:
   m_GameObject: {fileID: 604844367}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.9, z: 0}
+  m_LocalPosition: {x: 0, y: 1.311, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6334,10 +6334,10 @@ MonoBehaviour:
   pauseBtn: {fileID: 1791704914}
   pausedTxt: {fileID: 1379866692}
   player: {fileID: 1094661130}
-  playerSpawnEffect: {fileID: 1536077145}
-  playerInitPos: {fileID: 604844368}
+  shopSceneOffset: {x: 0, y: 10, z: -10}
   enemyBoxSpawnCd: 10
   gameCanStart: 0
+  cameraController: {fileID: 412263130}
 --- !u!114 &739654551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8551,7 +8551,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.48153362, y: 0.000000045240434, z: -0.000000024856348, w: 0.87642765}
+  m_LocalRotation: {x: 0.48219556, y: 0.000000015073883, z: -0.000000008296839, w: 0.87606364}
   m_LocalPosition: {x: 0, y: 25, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11519,7 +11519,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 963194227}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -12732,7 +12732,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1701271903018500293, guid: 4d40897e2b0da4bd89a3e8e3ba0980a4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.39
+      value: 1.311
       objectReference: {fileID: 0}
     - target: {fileID: 1701271903018500293, guid: 4d40897e2b0da4bd89a3e8e3ba0980a4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12879,16 +12879,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8566788732320687741, guid: 4d40897e2b0da4bd89a3e8e3ba0980a4, type: 3}
+      propertyPath: simulationSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8566788732320687741, guid: 4d40897e2b0da4bd89a3e8e3ba0980a4, type: 3}
       propertyPath: ShapeModule.type
       value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 8566788732320687741, guid: 4d40897e2b0da4bd89a3e8e3ba0980a4, type: 3}
       propertyPath: ShapeModule.radiusThickness
-      value: 1.0000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8566788732320687741, guid: 4d40897e2b0da4bd89a3e8e3ba0980a4, type: 3}
       propertyPath: InitialModule.maxNumParticles
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 8566788732320687741, guid: 4d40897e2b0da4bd89a3e8e3ba0980a4, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9150002195343278400, guid: 4d40897e2b0da4bd89a3e8e3ba0980a4, type: 3}
       propertyPath: m_Name
@@ -14148,11 +14156,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &1536077145 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3280519133390621005, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
-  m_PrefabInstance: {fileID: 1174041897}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1556679223
 GameObject:
   m_ObjectHideFlags: 0
@@ -18199,7 +18202,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1990235526

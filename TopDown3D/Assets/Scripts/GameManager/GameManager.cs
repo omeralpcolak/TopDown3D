@@ -43,12 +43,12 @@ public class GameManager : MonoBehaviour
     {
         
         ScreenManager.instance.ChangeScreen(Screen.MAIN);
-        StartCoroutine(EnemyBoxSpawning());
+        //StartCoroutine(EnemyBoxSpawning());
     }
 
     private void Update()
     {
-        ControllingEnemyBoxSpawning();
+        //ControllingEnemyBoxSpawning();
         
     }
 
@@ -169,11 +169,11 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         ScreenManager.instance.mainMenuScene.gameObject.SetActive(false);
         player.gameObject.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        //yield return new WaitForSeconds(1f);
         //cameraController.ChangeOffset(playingOffset);
         yield return new WaitForSeconds(1f);
         UIActivasion();
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         gameCanStart = true;
     }
 
