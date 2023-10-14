@@ -21,6 +21,15 @@ Simple menu transition:
 
 ![scenetransition](https://github.com/omeralpcolak/TopDown3D/assets/112391850/a6a8fccb-588a-424a-b2f1-e98f018623f9)
 
+A little bridge animation and the bridge will be used for the player to pass to the boss level: 
+
+![staircaseanim](https://github.com/omeralpcolak/TopDown3D/assets/112391850/6c11ce29-90c8-465c-a2d2-4ecdbff53fb6)
+
+
+
+
+
+
 
 
 
