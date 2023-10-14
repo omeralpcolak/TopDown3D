@@ -7,7 +7,49 @@ public class BossController : MonoBehaviour
 {
     public GameObject ring;
     public GameObject bossIdleEffect;
+
     public float animRotateSpeed;
+
+    public int bossCurrentHealth, bossMaxHealth;
+
+    private Material cubeMaterial;
+
+    private Color targetColor = Color.red;
+    private Color initColor;
+
+    private void Awake()
+    {
+        cubeMaterial = GetComponent<Renderer>().material;
+
+    }
+
+    private void Start()
+    {
+        bossCurrentHealth = bossMaxHealth;
+        initColor = cubeMaterial.color;
+    }
+
+
+
+    public void BossTakeDamage(int damageAmount)
+    {
+        bossCurrentHealth -= damageAmount;
+
+        cubeMaterial.DOColor(targetColor, 0.2f).OnComplete(delegate
+        {
+            cubeMaterial.DOColor(initColor, 0.2f);
+        });
+
+        if(bossCurrentHealth <= 0)
+        {
+            bossCurrentHealth = 0;
+            gameObject.transform.DOScale(0, 1f).OnComplete(delegate
+            {
+                gameObject.SetActive(false);
+                //Instantiate death effect;
+            });
+        }
+    }
 
     public void BossAnim()
     {
