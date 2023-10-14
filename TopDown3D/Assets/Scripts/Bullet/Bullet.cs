@@ -29,6 +29,13 @@ public class Bullet : MonoBehaviour
             other.gameObject.GetComponent<EnemyHealthController>().EnemyTakeDamage(bulletDamageAmount);
         }
 
+        if (other.gameObject.CompareTag("Boss"))
+        {
+            Destroy(gameObject);
+            Instantiate(hitEffect, transform.position, transform.rotation);
+            CameraShake.instance.ShakeCamera(1.5f);
+        }
+
         if (other.gameObject.CompareTag("Wall"))
         {
             Destroy(gameObject);

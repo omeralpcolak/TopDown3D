@@ -9,6 +9,8 @@ TagManager:
   - FxTemporaire
   - GameManager
   - Xp
+  - Staircase
+  - Boss
   layers:
   - Default
   - TransparentFX
