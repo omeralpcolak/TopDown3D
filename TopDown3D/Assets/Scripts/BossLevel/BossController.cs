@@ -7,6 +7,7 @@ public class BossController : MonoBehaviour
 {
     public GameObject ring;
     public GameObject bossIdleEffect;
+    public GameObject attackCubesParent;
 
     public float animRotateSpeed;
 
@@ -16,6 +17,8 @@ public class BossController : MonoBehaviour
 
     private Color targetColor = Color.red;
     private Color initColor;
+
+    public List<GameObject> attackCubes = new List<GameObject>();
 
     private void Awake()
     {
@@ -28,7 +31,6 @@ public class BossController : MonoBehaviour
         bossCurrentHealth = bossMaxHealth;
         initColor = cubeMaterial.color;
     }
-
 
 
     public void BossTakeDamage(int damageAmount)
@@ -61,6 +63,28 @@ public class BossController : MonoBehaviour
         bossIdleEffect.gameObject.SetActive(true);
 
         ring.transform.DORotate(new Vector3(360f, 360f, 0f), animRotateSpeed/2, RotateMode.FastBeyond360)
+        .SetLoops(-1, LoopType.Restart)
+        .SetRelative()
+        .SetEase(Ease.Linear);
+
+
+        StartCoroutine(AttackCubes());
+    }
+
+
+    IEnumerator AttackCubes()
+    {
+        attackCubesParent.transform.parent = null;
+
+        foreach(GameObject attackCube in attackCubes)
+        {
+            attackCube.gameObject.SetActive(true);
+            attackCube.transform.DOScale(0.22f, 2f);
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        attackCubesParent.transform.DORotate(new Vector3(0f,360f, 0f), animRotateSpeed*2, RotateMode.FastBeyond360)
         .SetLoops(-1, LoopType.Restart)
         .SetRelative()
         .SetEase(Ease.Linear);

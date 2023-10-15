@@ -37,7 +37,6 @@ public class BossLevelManager : MonoBehaviour
     {
         StartCoroutine(StaircaseMovementRtn());
         StartCoroutine(StaircaseObjectsMovementRtn());
-        
     }
 
     IEnumerator StaircaseMovementRtn()
