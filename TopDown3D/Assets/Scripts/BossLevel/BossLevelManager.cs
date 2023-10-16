@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using DG.Tweening;
 
@@ -7,6 +8,7 @@ public class BossLevelManager : MonoBehaviour
 {
     public List<GameObject> staircases = new List<GameObject>();
     public List<GameObject> staircaseObjects = new List<GameObject>();
+    
 
     public GameObject bossGround;
     public GameObject boss;
@@ -53,8 +55,10 @@ public class BossLevelManager : MonoBehaviour
         {
             boss.transform.DOMoveY(5f, 2f).OnComplete(delegate
             {
+                ReverseMovement();
                 Instantiate(bossDropEffect, bossDropEffectPos.position, Quaternion.identity);
                 bossController.BossAnim();
+                CameraShake.instance.ShakeCamera(3f);
             });
         });
     }
@@ -67,6 +71,44 @@ public class BossLevelManager : MonoBehaviour
         {
             staircaseObject.transform.DOMoveY(0f, 1f);
             yield return new WaitForSeconds(.3f);
+        }
+    }
+
+    private void ReverseMovement()
+    {
+        StartCoroutine(ReverseStaircaseMovement());
+        StartCoroutine(ReverseObjectMovement());
+    }
+
+    IEnumerator ReverseStaircaseMovement()
+    {
+        List<GameObject> reverseStaircases = new List<GameObject>();
+        reverseStaircases = new List<GameObject>(staircases);
+        reverseStaircases.Reverse();
+
+        foreach(GameObject reverseStaircase in reverseStaircases)
+        {
+            reverseStaircase.transform.DOMoveY(-40f, 2f).OnComplete(delegate
+            {
+                //reverseStaircase.gameObject.SetActive(false);
+            });
+            yield return new WaitForSeconds(0.3f);
+        }
+    }
+
+    IEnumerator ReverseObjectMovement()
+    {
+        List<GameObject> reverseObjects = new List<GameObject>();
+        reverseObjects = new List<GameObject>(staircaseObjects);
+        reverseObjects.Reverse();
+
+        foreach (GameObject reverseObject in reverseObjects)
+        {
+            reverseObject.transform.DOMoveY(35f, 2f).OnComplete(delegate
+            {
+                //reverseObject.gameObject.SetActive(false);
+            });
+            yield return new WaitForSeconds(0.3f);
         }
     }
 

@@ -10,8 +10,12 @@ public class BossController : MonoBehaviour
     public GameObject attackCubesParent;
 
     public float animRotateSpeed;
+    public float changeInterval;
 
-    public int bossCurrentHealth, bossMaxHealth;
+    [SerializeField]private float rotationVal = -360f;
+
+    public int bossCurrentHealth;
+    public int bossMaxHealth;
 
     private Material cubeMaterial;
 
@@ -30,6 +34,11 @@ public class BossController : MonoBehaviour
     {
         bossCurrentHealth = bossMaxHealth;
         initColor = cubeMaterial.color;
+    }
+
+    private void Update()
+    {
+        
     }
 
 
@@ -84,9 +93,22 @@ public class BossController : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        attackCubesParent.transform.DORotate(new Vector3(0f,360f, 0f), animRotateSpeed*2, RotateMode.FastBeyond360)
+        StartCoroutine(ChangeRotation());
+    }
+
+    IEnumerator ChangeRotation()
+    {
+        changeInterval = Random.Range(4, 8);
+
+        rotationVal = -rotationVal;
+
+        attackCubesParent.transform.DORotate(new Vector3(0f, rotationVal, 0f), animRotateSpeed * 2, RotateMode.FastBeyond360)
         .SetLoops(-1, LoopType.Restart)
         .SetRelative()
         .SetEase(Ease.Linear);
+
+        yield return new WaitForSeconds(changeInterval);
+
+        StartCoroutine(ChangeRotation());
     }
 }
