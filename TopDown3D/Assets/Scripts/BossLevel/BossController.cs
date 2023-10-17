@@ -8,14 +8,18 @@ public class BossController : MonoBehaviour
     public GameObject ring;
     public GameObject bossIdleEffect;
     public GameObject attackCubesParent;
+    public GameObject smallCube;
 
     public float animRotateSpeed;
     public float changeInterval;
+    public float launchForce = 10f;
+    
 
     [SerializeField]private float rotationVal = -360f;
 
     public int bossCurrentHealth;
     public int bossMaxHealth;
+    public int smallCubesToLaunch = 10;
 
     private Material cubeMaterial;
 
@@ -60,6 +64,32 @@ public class BossController : MonoBehaviour
                 //Instantiate death effect;
             });
         }
+    }
+
+    IEnumerator BossDeath()
+    {
+        foreach(GameObject attackCube in attackCubes)
+        {
+            attackCube.transform.DOScale(0f, 1f);
+        }
+
+        yield return new WaitForSeconds(1f);
+
+        cubeMaterial.DOColor(Color.black, 1f);
+
+        gameObject.transform.DOScale(0, 1f).OnComplete(delegate
+        {
+            gameObject.SetActive(false);
+
+            for (int i = 0; i < smallCubesToLaunch; i++)
+            {
+                GameObject cube = Instantiate(smallCube, transform.position, Quaternion.identity);
+                Rigidbody rb = cube.GetComponent<Rigidbody>();
+
+                Vector3 randomDirection = Random.insideUnitSphere;
+                rb.AddForce(randomDirection * launchForce, ForceMode.Impulse);
+            }
+        });
     }
 
     public void BossAnim()
