@@ -9,17 +9,21 @@ public class BossController : MonoBehaviour
     public GameObject bossIdleEffect;
     public GameObject attackCubesParent;
     public GameObject smallCube;
+    public GameObject bossDeathEffect;
 
     public float animRotateSpeed;
     public float changeInterval;
-    public float launchForce = 10f;
+    public float launchForce = 1.2f;
+    //public float launchHeight = 0.5f;
+
+    private bool isBossDead = false;
     
 
     [SerializeField]private float rotationVal = -360f;
 
     public int bossCurrentHealth;
     public int bossMaxHealth;
-    public int smallCubesToLaunch = 10;
+    public int smallCubesToLaunch = 15;
 
     private Material cubeMaterial;
 
@@ -55,14 +59,11 @@ public class BossController : MonoBehaviour
             cubeMaterial.DOColor(initColor, 0.2f);
         });
 
-        if(bossCurrentHealth <= 0)
+        if(bossCurrentHealth <= 0 && !isBossDead)
         {
             bossCurrentHealth = 0;
-            gameObject.transform.DOScale(0, 1f).OnComplete(delegate
-            {
-                gameObject.SetActive(false);
-                //Instantiate death effect;
-            });
+            StartCoroutine(BossDeath());
+            isBossDead = true;
         }
     }
 
@@ -76,10 +77,13 @@ public class BossController : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         cubeMaterial.DOColor(Color.black, 1f);
+        Instantiate(bossDeathEffect, transform.position, Quaternion.identity);
 
         gameObject.transform.DOScale(0, 1f).OnComplete(delegate
         {
+            
             gameObject.SetActive(false);
+            CameraShake.instance.ShakeCamera(2f);
 
             for (int i = 0; i < smallCubesToLaunch; i++)
             {
