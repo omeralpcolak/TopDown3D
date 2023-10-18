@@ -25,8 +25,9 @@ A little bridge animation and the bridge will be used for the player to pass to 
 
 ![staircaseanim](https://github.com/omeralpcolak/TopDown3D/assets/112391850/6c11ce29-90c8-465c-a2d2-4ecdbff53fb6)
 
+Death of boss
 
-
+![bossdeath](https://github.com/omeralpcolak/TopDown3D/assets/112391850/2c44795c-3d7c-4988-a151-5afd9739f126)
 
 
 
