@@ -29,12 +29,6 @@ public class BossLevelManager : MonoBehaviour
         BeginningBossLevel();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void BeginningBossLevel()
     {
         StartCoroutine(StaircaseMovementRtn());

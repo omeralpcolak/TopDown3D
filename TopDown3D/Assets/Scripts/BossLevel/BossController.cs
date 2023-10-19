@@ -13,15 +13,14 @@ public class BossController : MonoBehaviour
     public GameObject bossCanvasHolder;
 
     public float animRotateSpeed;
+    public float smallCubeRotateSpeed;
     public float changeInterval;
     public float launchForce = 1.2f;
-    //public float launchHeight = 0.5f;
 
     private bool isBossDead = false;
 
     private Camera cam;
     
-
     [SerializeField]private float rotationVal = -360f;
 
     public Healthbar bossHealthBar;
@@ -53,7 +52,7 @@ public class BossController : MonoBehaviour
 
     private void Update()
     {
-        bossCanvasHolder.transform.rotation = Quaternion.LookRotation(bossCanvasHolder.transform.position - cam.transform.position);
+        bossCanvasHolder.transform.rotation = Quaternion.LookRotation((bossCanvasHolder.transform.position - cam.transform.position).normalized);
     }
 
 
@@ -144,10 +143,11 @@ public class BossController : MonoBehaviour
     IEnumerator ChangeRotation()
     {
         changeInterval = Random.Range(4, 8);
+        smallCubeRotateSpeed = Random.Range(5, 8);
 
         rotationVal = -rotationVal;
 
-        attackCubesParent.transform.DORotate(new Vector3(0f, rotationVal, 0f), animRotateSpeed * 2, RotateMode.FastBeyond360)
+        attackCubesParent.transform.DORotate(new Vector3(0f, rotationVal, 0f), smallCubeRotateSpeed, RotateMode.FastBeyond360)
         .SetLoops(-1, LoopType.Restart)
         .SetRelative()
         .SetEase(Ease.Linear);
