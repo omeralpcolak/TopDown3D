@@ -27,7 +27,8 @@ A little bridge animation and the bridge will be used for the player to pass to 
 
 Death of boss
 
-![bossdeath](https://github.com/omeralpcolak/TopDown3D/assets/112391850/2c44795c-3d7c-4988-a151-5afd9739f126)
+![bossdeathupdated](https://github.com/omeralpcolak/TopDown3D/assets/112391850/39f9d7b6-d923-4b07-a0b4-a2c1763522cb)
+
 
 
 
