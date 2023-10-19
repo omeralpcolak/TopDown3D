@@ -10,6 +10,7 @@ public class BossController : MonoBehaviour
     public GameObject attackCubesParent;
     public GameObject smallCube;
     public GameObject bossDeathEffect;
+    public GameObject bossCanvasHolder;
 
     public float animRotateSpeed;
     public float changeInterval;
@@ -17,9 +18,13 @@ public class BossController : MonoBehaviour
     //public float launchHeight = 0.5f;
 
     private bool isBossDead = false;
+
+    private Camera cam;
     
 
     [SerializeField]private float rotationVal = -360f;
+
+    public Healthbar bossHealthBar;
 
     public int bossCurrentHealth;
     public int bossMaxHealth;
@@ -42,18 +47,20 @@ public class BossController : MonoBehaviour
     {
         bossCurrentHealth = bossMaxHealth;
         initColor = cubeMaterial.color;
+        bossHealthBar.UpdateHealthBar(bossMaxHealth, bossCurrentHealth);
+        cam = Camera.main;
     }
 
     private void Update()
     {
-        
+        bossCanvasHolder.transform.rotation = Quaternion.LookRotation(bossCanvasHolder.transform.position - cam.transform.position);
     }
 
 
     public void BossTakeDamage(int damageAmount)
-    {
+    {   
         bossCurrentHealth -= damageAmount;
-
+        bossHealthBar.UpdateHealthBar(bossMaxHealth, bossCurrentHealth);
         cubeMaterial.DOColor(targetColor, 0.2f).OnComplete(delegate
         {
             cubeMaterial.DOColor(initColor, 0.2f);
@@ -69,7 +76,8 @@ public class BossController : MonoBehaviour
 
     IEnumerator BossDeath()
     {
-        foreach(GameObject attackCube in attackCubes)
+        bossCanvasHolder.GetComponent<CanvasGroup>().DOFade(0f, 1f);
+        foreach (GameObject attackCube in attackCubes)
         {
             attackCube.transform.DOScale(0f, 1f);
         }
@@ -83,7 +91,7 @@ public class BossController : MonoBehaviour
         {
             
             gameObject.SetActive(false);
-            CameraShake.instance.ShakeCamera(2f);
+            CameraShake.instance.ShakeCamera(3.2f);
 
             for (int i = 0; i < smallCubesToLaunch; i++)
             {
@@ -98,6 +106,9 @@ public class BossController : MonoBehaviour
 
     public void BossAnim()
     {
+        bossCanvasHolder.transform.parent = null;
+        bossCanvasHolder.GetComponent<CanvasGroup>().DOFade(1f, 1f);
+
         transform.DORotate(new Vector3(0f, 360f, 360f), animRotateSpeed, RotateMode.FastBeyond360)
         .SetLoops(-1, LoopType.Restart)
         .SetRelative()
