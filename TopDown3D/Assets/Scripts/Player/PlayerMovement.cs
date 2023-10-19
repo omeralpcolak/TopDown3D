@@ -102,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 Animator hatAnim = shopManager.equippedObj.GetComponent<Animator>();
                 hatAnim.SetBool("running", true);
-                Debug.Log(hatAnim.name);
+                //Debug.Log(hatAnim.name);
             }
         }
         else

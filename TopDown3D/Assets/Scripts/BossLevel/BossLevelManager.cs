@@ -40,7 +40,8 @@ public class BossLevelManager : MonoBehaviour
         yield return new WaitForSeconds(6f);
         foreach (GameObject staircase in staircases)
         {
-            staircase.transform.DOMoveY(0f, 1f);
+            //staircase.transform.DOMoveY(0f, 1f);
+            staircase.transform.DOScale(new Vector3(10, 1, 2.5f), 1f);
             yield return new WaitForSeconds(.3f);
         }
 
@@ -64,6 +65,7 @@ public class BossLevelManager : MonoBehaviour
         foreach (GameObject staircaseObject in staircaseObjects)
         {
             staircaseObject.transform.DOMoveY(0f, 1f);
+            //staircaseObject.transform.DOScale(1f,1f);
             yield return new WaitForSeconds(.3f);
         }
     }
@@ -82,10 +84,8 @@ public class BossLevelManager : MonoBehaviour
 
         foreach(GameObject reverseStaircase in reverseStaircases)
         {
-            reverseStaircase.transform.DOMoveY(-40f, 2f).OnComplete(delegate
-            {
-                //reverseStaircase.gameObject.SetActive(false);
-            });
+            reverseStaircase.transform.DOScale(0, 1f);
+            //reverseStaircase.transform.DOMoveY(-40f, 2f);
             yield return new WaitForSeconds(0.3f);
         }
     }
