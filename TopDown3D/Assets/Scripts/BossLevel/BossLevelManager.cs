@@ -98,7 +98,7 @@ public class BossLevelManager : MonoBehaviour
 
         foreach (GameObject reverseObject in reverseObjects)
         {
-            reverseObject.transform.DOMoveY(35f, 2f).OnComplete(delegate
+            reverseObject.transform.DOMoveY(35f, 1f).OnComplete(delegate
             {
                 //reverseObject.gameObject.SetActive(false);
             });

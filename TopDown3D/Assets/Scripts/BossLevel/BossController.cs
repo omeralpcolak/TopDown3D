@@ -15,7 +15,7 @@ public class BossController : MonoBehaviour
     public float animRotateSpeed;
     public float smallCubeRotateSpeed;
     public float changeInterval;
-    public float launchForce = 1.2f;
+    public float launchForce;
 
     private bool isBossDead = false;
 
@@ -27,7 +27,7 @@ public class BossController : MonoBehaviour
 
     public int bossCurrentHealth;
     public int bossMaxHealth;
-    public int smallCubesToLaunch = 15;
+    public int smallCubesToLaunch;
 
     private Material cubeMaterial;
 
@@ -48,6 +48,7 @@ public class BossController : MonoBehaviour
         initColor = cubeMaterial.color;
         bossHealthBar.UpdateHealthBar(bossMaxHealth, bossCurrentHealth);
         cam = Camera.main;
+        
     }
 
     private void Update()
@@ -143,7 +144,7 @@ public class BossController : MonoBehaviour
     IEnumerator ChangeRotation()
     {
         changeInterval = Random.Range(4, 8);
-        smallCubeRotateSpeed = Random.Range(5, 8);
+        smallCubeRotateSpeed = Random.Range(3.5f, 5.5f);
 
         rotationVal = -rotationVal;
 

@@ -16,6 +16,7 @@ public class SmallCubes : MonoBehaviour
     IEnumerator SmallCubesDeath()
     {
         yield return new WaitForSeconds(timeToDeath);
+        GameManager.instance.GetComponent<LevelXpController>().SpawnXp(transform);
         transform.DOScale(0f, 1f).OnComplete(delegate
         {
             Destroy(gameObject);
