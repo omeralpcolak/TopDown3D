@@ -21,10 +21,13 @@ public class GameManager : MonoBehaviour
     public float enemyBoxSpawnCd;
 
     [HideInInspector]public bool gameCanStart;
+    public bool bossLevelStart;
 
     PowerupController powerupController;
     EnemySpawnController enemySpawnController;
     ShopManager shopManager;
+    LevelXpController levelXpController;
+    public BossLevelManager bossLevelManager;
 
     public CameraController cameraController;
 
@@ -37,18 +40,31 @@ public class GameManager : MonoBehaviour
         enemySpawnController = GetComponent<EnemySpawnController>();
         powerupController = GetComponent<PowerupController>();
         shopManager = GetComponent<ShopManager>();
+        levelXpController = GetComponent<LevelXpController>();
     }
 
     private void Start()
     {
-        
         ScreenManager.instance.ChangeScreen(Screen.MAIN);
         //StartCoroutine(EnemyBoxSpawning());
     }
 
+
     private void Update()
     {
-        //ControllingEnemyBoxSpawning();
+        ControllingEnemyBoxSpawning();
+
+        if (levelXpController.currentLevel % 2 == 0 && !bossLevelStart)
+        {
+            bossLevelStart = true;
+            KillEnemies();
+            bossLevelManager.BeginningBossLevel();
+        }
+
+        if (levelXpController.currentLevel % 2 != 0)
+        {
+            bossLevelStart = false;
+        }
         
     }
 
@@ -57,11 +73,12 @@ public class GameManager : MonoBehaviour
     {
         if (gameCanStart)
         {
-            if (powerupController.hasTeleported)
+            if (powerupController.hasTeleported || bossLevelStart)
             {
+                KillEnemies();
                 StopEnemyBoxSpawning();
             }
-            else if (!powerupController.hasTeleported)
+            else if (!powerupController.hasTeleported || !bossLevelStart)
             {
                 StartEnemyBoxSpawning();
             }
@@ -121,8 +138,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    
-
     public void Shop()
     {
         ScreenManager.instance.ChangeScreen(Screen.SHOP);
@@ -146,17 +161,13 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    
+
     IEnumerator GameOverRtn()
     {
         gameCanStart = false;
         yield return new WaitForSeconds(1f);
-
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        foreach (GameObject enemy in enemies)
-        {
-            enemy.GetComponent<EnemyHealthController>().EnemyDeathAtGameOver();
-        }
+        KillEnemies();
         yield return new WaitForSeconds(1f);
         UIDeactivasion();
         yield return new WaitForSeconds(1f);
@@ -175,6 +186,16 @@ public class GameManager : MonoBehaviour
         UIActivasion();
         yield return new WaitForSeconds(1f);
         gameCanStart = true;
+    }
+
+    public void KillEnemies()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject enemy in enemies)
+        {
+            enemy.GetComponent<EnemyHealthController>().EnemyDeathAtGameOver();
+        }
     }
 
     private void StopEnemyBoxSpawning()

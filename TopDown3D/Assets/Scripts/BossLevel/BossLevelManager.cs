@@ -26,10 +26,10 @@ public class BossLevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BeginningBossLevel();
+        //BeginningBossLevel();
     }
 
-    private void BeginningBossLevel()
+    public void BeginningBossLevel()
     {
         StartCoroutine(StaircaseMovementRtn());
         StartCoroutine(StaircaseObjectsMovementRtn());
@@ -37,7 +37,6 @@ public class BossLevelManager : MonoBehaviour
 
     IEnumerator StaircaseMovementRtn()
     {
-        yield return new WaitForSeconds(6f);
         foreach (GameObject staircase in staircases)
         {
             //staircase.transform.DOMoveY(0f, 1f);
@@ -50,7 +49,7 @@ public class BossLevelManager : MonoBehaviour
         {
             boss.transform.DOMoveY(5f, 2f).OnComplete(delegate
             {
-                ReverseMovement();
+                //ReverseMovement();
                 Instantiate(bossDropEffect, bossDropEffectPos.position, Quaternion.identity);
                 bossController.BossAnim();
                 CameraShake.instance.ShakeCamera(3f);
@@ -60,8 +59,6 @@ public class BossLevelManager : MonoBehaviour
 
     IEnumerator StaircaseObjectsMovementRtn()
     {
-        yield return new WaitForSeconds(6f);
-
         foreach (GameObject staircaseObject in staircaseObjects)
         {
             staircaseObject.transform.DOMoveY(0f, 1f);
@@ -70,7 +67,7 @@ public class BossLevelManager : MonoBehaviour
         }
     }
 
-    private void ReverseMovement()
+    public void ReverseMovement()
     {
         StartCoroutine(ReverseStaircaseMovement());
         StartCoroutine(ReverseObjectMovement());

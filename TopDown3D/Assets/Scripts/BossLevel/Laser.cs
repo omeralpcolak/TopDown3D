@@ -15,6 +15,7 @@ public class Laser : MonoBehaviour
             {
                 PlayerHealthController playerHealthController = other.gameObject.GetComponent<PlayerHealthController>();
                 playerHealthController.PlayerTakeDamage(laserDamage);
+                playerHealthController.BossHitEffect();
             }
         }
     }

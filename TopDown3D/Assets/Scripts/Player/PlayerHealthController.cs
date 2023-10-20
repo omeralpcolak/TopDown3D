@@ -9,6 +9,7 @@ public class PlayerHealthController : MonoBehaviour
     public float playerCurrentHealth, playerMaxHealth;
 
     public GameObject takeDamageUI;
+    public GameObject bossHitEffect;
 
     [SerializeField]Healthbar healthbar;
 
@@ -50,6 +51,11 @@ public class PlayerHealthController : MonoBehaviour
         takeDamageUI.GetComponent<CanvasGroup>().DOFade(0f, uiDuration);
 
     }*/
+
+    public void BossHitEffect()
+    {
+        Instantiate(bossHitEffect, transform.position, Quaternion.identity);
+    }
 
     private void DamageUIFade(float uiDuration)
     {

@@ -53,7 +53,9 @@ public class BossController : MonoBehaviour
 
     private void Update()
     {
-        bossCanvasHolder.transform.rotation = Quaternion.LookRotation((bossCanvasHolder.transform.position - cam.transform.position).normalized);
+        Vector3 lookPos = cam.transform.position - new Vector3(0, 15, 0);
+
+        bossCanvasHolder.transform.rotation = Quaternion.LookRotation(bossCanvasHolder.transform.position - lookPos);
     }
 
 
@@ -144,7 +146,7 @@ public class BossController : MonoBehaviour
     IEnumerator ChangeRotation()
     {
         changeInterval = Random.Range(4, 8);
-        smallCubeRotateSpeed = Random.Range(3.5f, 5.5f);
+        smallCubeRotateSpeed = Random.Range(6, 8);
 
         rotationVal = -rotationVal;
 
