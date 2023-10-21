@@ -20,15 +20,17 @@ public class GameManager : MonoBehaviour
 
     public float enemyBoxSpawnCd;
 
+    public int killCountPerSession;
+
     [HideInInspector]public bool gameCanStart;
-    public bool bossLevelStart;
+    [HideInInspector]public bool bossLevelStart;
 
     PowerupController powerupController;
     EnemySpawnController enemySpawnController;
     ShopManager shopManager;
     LevelXpController levelXpController;
-    public BossLevelManager bossLevelManager;
 
+    public BossLevelManager bossLevelManager;
     public CameraController cameraController;
 
     Coroutine enemyBoxSpawningCoroutine;
@@ -46,26 +48,29 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ScreenManager.instance.ChangeScreen(Screen.MAIN);
-        //StartCoroutine(EnemyBoxSpawning());
+        killCountPerSession = 0;
     }
 
 
     private void Update()
     {
         ControllingEnemyBoxSpawning();
+        ControllingBossLevel();
+    }
 
-        if (levelXpController.currentLevel % 2 == 0 && !bossLevelStart)
+    private void ControllingBossLevel()
+    {
+        if (killCountPerSession == 10 && !bossLevelStart)
         {
             bossLevelStart = true;
             KillEnemies();
             bossLevelManager.BeginningBossLevel();
         }
 
-        if (levelXpController.currentLevel % 2 != 0)
+        if (killCountPerSession != 10)
         {
             bossLevelStart = false;
         }
-        
     }
 
 
@@ -144,6 +149,12 @@ public class GameManager : MonoBehaviour
         cameraController.ChangeOffset(shopSceneOffset);
     }
 
+    public void Victory()
+    {
+        StartCoroutine(VictoryRtn());
+        
+    }
+
     public void Return()
     {
         ScreenManager.instance.ChangeScreen(Screen.MAIN);
@@ -161,6 +172,16 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+
+    IEnumerator VictoryRtn()
+    {
+        KillEnemies();
+        yield return new WaitForSeconds(1f);
+        UIDeactivasion();
+        yield return new WaitForSeconds(1f);
+        ScreenManager.instance.ChangeScreen(Screen.VICTORY);
+        gameCanStart = false;
+    }
     
 
     IEnumerator GameOverRtn()

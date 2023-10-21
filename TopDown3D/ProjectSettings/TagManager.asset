@@ -11,6 +11,7 @@ TagManager:
   - Xp
   - Staircase
   - Boss
+  - BossLaser
   layers:
   - Default
   - TransparentFX

@@ -43,6 +43,7 @@ public class ShopManager : MonoBehaviour
 
     public void GainSoul()
     {
+        GameManager.instance.killCountPerSession++;
         killCount++;
         wallet += killCount;
         killCount = 0;

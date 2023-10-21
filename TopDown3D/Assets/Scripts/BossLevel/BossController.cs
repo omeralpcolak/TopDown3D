@@ -104,6 +104,8 @@ public class BossController : MonoBehaviour
                 rb.AddForce(randomDirection * launchForce, ForceMode.Impulse);
             }
         });
+
+        GameManager.instance.Victory();
     }
 
     public void BossAnim()

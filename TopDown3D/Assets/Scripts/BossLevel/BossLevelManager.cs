@@ -16,18 +16,27 @@ public class BossLevelManager : MonoBehaviour
 
     public Transform bossDropEffectPos;
 
+    private Collider boxCollider;
+
     BossController bossController;
 
     private void Awake()
     {
         bossController = GameObject.FindGameObjectWithTag("Boss").GetComponent<BossController>();
+        boxCollider = GetComponent<BoxCollider>();
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         //BeginningBossLevel();
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        ReverseMovement();
+        boxCollider.enabled = false;
+    }
+
 
     public void BeginningBossLevel()
     {

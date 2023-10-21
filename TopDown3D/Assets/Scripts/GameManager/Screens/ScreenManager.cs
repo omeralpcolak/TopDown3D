@@ -17,6 +17,7 @@ public class ScreenManager : MonoBehaviour
     public GameObject mainMenuScene;
     public GameObject gameOverScene;
     public GameObject shopScene;
+    public GameObject victoryScene;
 
     public TMP_Text walletTxt;
 
@@ -53,6 +54,10 @@ public class ScreenManager : MonoBehaviour
 
             case Screen.GAMEOVER:
                 currentScreen = gameOverScene;
+                break;
+
+            case Screen.VICTORY:
+                currentScreen = victoryScene;
                 break;
 
             case Screen.SHOP:
