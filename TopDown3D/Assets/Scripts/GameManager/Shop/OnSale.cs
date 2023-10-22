@@ -30,30 +30,4 @@ public class OnSale : MonoBehaviour
 
 
     }
-
-
-    /*public void ItemInfo()
-    {
-
-        switch (itemName)
-        {
-            case "Viking Hat":
-
-                itemNameTxt.text = itemName;
-                itemPriceTxt.text = itemPrice.ToString();
-                break;
-
-            case "Wizard Hat":
-                itemNameTxt.text = itemName;
-                itemPriceTxt.text = itemPrice.ToString();
-                break;
-
-            case "Sleeping Hat":
-                itemNameTxt.text = itemName;
-                itemPriceTxt.text = itemPrice.ToString();
-                break;
-
-                   
-        }
-    }*/
 }

@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
     PowerupController powerupController;
     EnemySpawnController enemySpawnController;
     ShopManager shopManager;
-    LevelXpController levelXpController;
 
     public BossLevelManager bossLevelManager;
     public CameraController cameraController;
@@ -42,7 +41,6 @@ public class GameManager : MonoBehaviour
         enemySpawnController = GetComponent<EnemySpawnController>();
         powerupController = GetComponent<PowerupController>();
         shopManager = GetComponent<ShopManager>();
-        levelXpController = GetComponent<LevelXpController>();
     }
 
     private void Start()
@@ -60,14 +58,14 @@ public class GameManager : MonoBehaviour
 
     private void ControllingBossLevel()
     {
-        if (killCountPerSession == 10 && !bossLevelStart)
+        if (killCountPerSession == 2 && !bossLevelStart)
         {
             bossLevelStart = true;
             KillEnemies();
             bossLevelManager.BeginningBossLevel();
         }
 
-        if (killCountPerSession != 10)
+        if (killCountPerSession != 2)
         {
             bossLevelStart = false;
         }
@@ -159,6 +157,11 @@ public class GameManager : MonoBehaviour
     {
         ScreenManager.instance.ChangeScreen(Screen.MAIN);
         cameraController.ResetOffset();
+    }
+
+    public void Continue()
+    {
+        gameCanStart = true;
     }
 
     public void Restart()

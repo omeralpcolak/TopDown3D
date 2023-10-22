@@ -6,16 +6,23 @@ using DG.Tweening;
 public class BossController : MonoBehaviour
 {
     public GameObject ring;
+    public GameObject horizontalRing;
     public GameObject bossIdleEffect;
     public GameObject attackCubesParent;
     public GameObject smallCube;
     public GameObject bossDeathEffect;
     public GameObject bossCanvasHolder;
 
+    public Transform player;
+
     public float animRotateSpeed;
     public float smallCubeRotateSpeed;
     public float changeInterval;
     public float launchForce;
+    public float minScale;
+    public float maxScale;
+    public float scaleDuration;
+    public float distanceToAttack; //for horizontal ring.
 
     private bool isBossDead = false;
 
@@ -56,6 +63,8 @@ public class BossController : MonoBehaviour
         Vector3 lookPos = cam.transform.position - new Vector3(0, 15, 0);
 
         bossCanvasHolder.transform.rotation = Quaternion.LookRotation(bossCanvasHolder.transform.position - lookPos);
+
+        HorizontalRingAttack();
     }
 
 
@@ -120,7 +129,12 @@ public class BossController : MonoBehaviour
 
         bossIdleEffect.gameObject.SetActive(true);
 
-        ring.transform.DORotate(new Vector3(360f, 360f, 0f), animRotateSpeed/2, RotateMode.FastBeyond360)
+        ring.transform.DORotate(new Vector3(0f, 360f, 0f), animRotateSpeed/2, RotateMode.FastBeyond360)
+        .SetLoops(-1, LoopType.Restart)
+        .SetRelative()
+        .SetEase(Ease.Linear);
+
+        horizontalRing.transform.DORotate(new Vector3(0f, 360f, 0f), animRotateSpeed / 2, RotateMode.FastBeyond360)
         .SetLoops(-1, LoopType.Restart)
         .SetRelative()
         .SetEase(Ease.Linear);
@@ -129,6 +143,24 @@ public class BossController : MonoBehaviour
         StartCoroutine(AttackCubes());
     }
 
+    private void HorizontalRingAttack()
+    {
+        
+
+        float distance = Vector3.Distance(player.position, transform.position);
+
+        Debug.Log(distance);
+
+        if (distance < distanceToAttack)
+        {
+            horizontalRing.transform.DOScale(maxScale, scaleDuration);
+        }
+        if (distance > distanceToAttack)
+        {
+            horizontalRing.transform.DOScale(minScale, scaleDuration);
+        }
+
+    }
 
     IEnumerator AttackCubes()
     {
