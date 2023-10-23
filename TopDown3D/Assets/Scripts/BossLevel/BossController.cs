@@ -129,10 +129,10 @@ public class BossController : MonoBehaviour
 
         bossIdleEffect.gameObject.SetActive(true);
 
-        ring.transform.DORotate(new Vector3(0f, 360f, 0f), animRotateSpeed/2, RotateMode.FastBeyond360)
+        /*ring.transform.DORotate(new Vector3(0f, 360f, 0f), animRotateSpeed/2, RotateMode.FastBeyond360)
         .SetLoops(-1, LoopType.Restart)
         .SetRelative()
-        .SetEase(Ease.Linear);
+        .SetEase(Ease.Linear);*/
 
         horizontalRing.transform.DORotate(new Vector3(0f, 360f, 0f), animRotateSpeed / 2, RotateMode.FastBeyond360)
         .SetLoops(-1, LoopType.Restart)
@@ -145,19 +145,17 @@ public class BossController : MonoBehaviour
 
     private void HorizontalRingAttack()
     {
-        
-
         float distance = Vector3.Distance(player.position, transform.position);
 
         Debug.Log(distance);
 
         if (distance < distanceToAttack)
         {
-            horizontalRing.transform.DOScale(maxScale, scaleDuration);
+            horizontalRing.transform.DOScale(new Vector3(6,5.5f,6), scaleDuration);
         }
         if (distance > distanceToAttack)
         {
-            horizontalRing.transform.DOScale(minScale, scaleDuration);
+            horizontalRing.transform.DOScale(new Vector3(2,1.5f,2), scaleDuration);
         }
 
     }

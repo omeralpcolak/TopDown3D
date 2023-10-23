@@ -35,6 +35,14 @@ public class BossLevelManager : MonoBehaviour
     {
         ReverseMovement();
         boxCollider.enabled = false;
+        boss.transform.DOMoveY(5f, 2f).OnComplete(delegate
+        {
+            //ReverseMovement();
+            Instantiate(bossDropEffect, bossDropEffectPos.position, Quaternion.identity);
+            bossController.BossAnim();
+            CameraShake.instance.ShakeCamera(3f);
+        });
+
     }
 
 
@@ -53,16 +61,16 @@ public class BossLevelManager : MonoBehaviour
             yield return new WaitForSeconds(.3f);
         }
 
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.5f);
         bossGround.transform.DOScale(1f, 0.8f).OnComplete(delegate
         {
-            boss.transform.DOMoveY(5f, 2f).OnComplete(delegate
+            /*boss.transform.DOMoveY(5f, 2f).OnComplete(delegate
             {
                 //ReverseMovement();
                 Instantiate(bossDropEffect, bossDropEffectPos.position, Quaternion.identity);
                 bossController.BossAnim();
                 CameraShake.instance.ShakeCamera(3f);
-            });
+            });*/
         });
     }
 
