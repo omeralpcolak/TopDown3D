@@ -19,10 +19,11 @@ public class BossController : MonoBehaviour
     public float smallCubeRotateSpeed;
     public float changeInterval;
     public float launchForce;
-    public float minScale;
-    public float maxScale;
     public float scaleDuration;
     public float distanceToAttack; //for horizontal ring.
+
+    public Vector3 horizontalRingMinScale = new Vector3(2, 1.5f, 2);
+    public Vector3 horizontalRingMaxScale = new Vector3(6, 4.5f, 6);
 
     private bool isBossDead = false;
 
@@ -36,7 +37,7 @@ public class BossController : MonoBehaviour
     public int bossMaxHealth;
     public int smallCubesToLaunch;
 
-    private Material cubeMaterial;
+    private Material bossMaterial;
 
     private Color targetColor = Color.red;
     private Color initColor;
@@ -45,14 +46,14 @@ public class BossController : MonoBehaviour
 
     private void Awake()
     {
-        cubeMaterial = GetComponent<Renderer>().material;
+        bossMaterial = GetComponent<Renderer>().material;
 
     }
 
     private void Start()
     {
         bossCurrentHealth = bossMaxHealth;
-        initColor = cubeMaterial.color;
+        initColor = bossMaterial.color;
         bossHealthBar.UpdateHealthBar(bossMaxHealth, bossCurrentHealth);
         cam = Camera.main;
         
@@ -72,9 +73,9 @@ public class BossController : MonoBehaviour
     {   
         bossCurrentHealth -= damageAmount;
         bossHealthBar.UpdateHealthBar(bossMaxHealth, bossCurrentHealth);
-        cubeMaterial.DOColor(targetColor, 0.2f).OnComplete(delegate
+        bossMaterial.DOColor(targetColor, 0.2f).OnComplete(delegate
         {
-            cubeMaterial.DOColor(initColor, 0.2f);
+            bossMaterial.DOColor(initColor, 0.2f);
         });
 
         if(bossCurrentHealth <= 0 && !isBossDead)
@@ -90,12 +91,18 @@ public class BossController : MonoBehaviour
         bossCanvasHolder.GetComponent<CanvasGroup>().DOFade(0f, 1f);
         foreach (GameObject attackCube in attackCubes)
         {
-            attackCube.transform.DOScale(0f, 1f);
+            attackCube.transform.DOScale(0f, 1f).OnComplete(delegate
+            {
+                attackCube.gameObject.SetActive(false);
+            });
+            
         }
+
+        horizontalRing.transform.DOScale(0, 1f);
 
         yield return new WaitForSeconds(1f);
 
-        cubeMaterial.DOColor(Color.black, 1f);
+        bossMaterial.DOColor(Color.black, 1f);
         Instantiate(bossDeathEffect, transform.position, Quaternion.identity);
 
         gameObject.transform.DOScale(0, 1f).OnComplete(delegate
@@ -129,15 +136,13 @@ public class BossController : MonoBehaviour
 
         bossIdleEffect.gameObject.SetActive(true);
 
-        /*ring.transform.DORotate(new Vector3(0f, 360f, 0f), animRotateSpeed/2, RotateMode.FastBeyond360)
-        .SetLoops(-1, LoopType.Restart)
-        .SetRelative()
-        .SetEase(Ease.Linear);*/
+        horizontalRing.gameObject.SetActive(true);
 
         horizontalRing.transform.DORotate(new Vector3(0f, 360f, 0f), animRotateSpeed / 2, RotateMode.FastBeyond360)
-        .SetLoops(-1, LoopType.Restart)
-        .SetRelative()
-        .SetEase(Ease.Linear);
+            .SetLoops(-1, LoopType.Restart)
+            .SetRelative()
+            .SetEase(Ease.Linear);
+
 
 
         StartCoroutine(AttackCubes());
@@ -151,11 +156,11 @@ public class BossController : MonoBehaviour
 
         if (distance < distanceToAttack)
         {
-            horizontalRing.transform.DOScale(new Vector3(6,4.5f,6), scaleDuration);
+            horizontalRing.transform.DOScale(horizontalRingMaxScale, scaleDuration);
         }
         if (distance > distanceToAttack)
         {
-            horizontalRing.transform.DOScale(new Vector3(2,1.5f,2), scaleDuration);
+            horizontalRing.transform.DOScale(horizontalRingMinScale, scaleDuration);
         }
 
     }
