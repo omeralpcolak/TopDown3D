@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class BossController : MonoBehaviour
 {
-    public GameObject ring;
+    //public GameObject ring;
     public GameObject horizontalRing;
     public GameObject bossIdleEffect;
     public GameObject attackCubesParent;
@@ -151,7 +151,7 @@ public class BossController : MonoBehaviour
 
         if (distance < distanceToAttack)
         {
-            horizontalRing.transform.DOScale(new Vector3(6,5.5f,6), scaleDuration);
+            horizontalRing.transform.DOScale(new Vector3(6,4.5f,6), scaleDuration);
         }
         if (distance > distanceToAttack)
         {
