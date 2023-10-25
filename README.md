@@ -33,6 +33,10 @@ Update on boss effects and boss attacks :
 
 ![updateonbosslevel](https://github.com/omeralpcolak/TopDown3D/assets/112391850/cd1e3d64-7640-4349-b02a-f5eebefd3f89)
 
+Different appearance of the game: 
+
+![differenui](https://github.com/omeralpcolak/TopDown3D/assets/112391850/cb5c5ba1-2b23-45f4-ad94-42c969042ce0)
+
 
 
 
