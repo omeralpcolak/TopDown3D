@@ -98,8 +98,6 @@ public class BossController : MonoBehaviour
             
         }
 
-        horizontalRing.transform.DOScale(0, 1f);
-
         yield return new WaitForSeconds(1f);
 
         bossMaterial.DOColor(Color.black, 1f);

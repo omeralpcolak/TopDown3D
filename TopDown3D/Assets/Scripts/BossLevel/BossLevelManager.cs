@@ -33,16 +33,18 @@ public class BossLevelManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        ReverseMovement();
-        boxCollider.enabled = false;
-        boss.transform.DOMoveY(5f, 2f).OnComplete(delegate
+        if (other.gameObject.CompareTag("Player"))
         {
-            //ReverseMovement();
-            Instantiate(bossDropEffect, bossDropEffectPos.position, Quaternion.identity);
-            bossController.BossAnim();
-            CameraShake.instance.ShakeCamera(3f);
-        });
-
+            ReverseMovement();
+            boxCollider.enabled = false;
+            boss.transform.DOMoveY(5f, 2f).OnComplete(delegate
+            {
+                //ReverseMovement();
+                Instantiate(bossDropEffect, bossDropEffectPos.position, Quaternion.identity);
+                bossController.BossAnim();
+                CameraShake.instance.ShakeCamera(3f);
+            });
+        }
     }
 
 
