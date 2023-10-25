@@ -29,6 +29,12 @@ Death of boss
 
 ![bossdeathupdated](https://github.com/omeralpcolak/TopDown3D/assets/112391850/39f9d7b6-d923-4b07-a0b4-a2c1763522cb)
 
+Update on boss effects and boss attacks : 
+
+![updateonbosslevel](https://github.com/omeralpcolak/TopDown3D/assets/112391850/cd1e3d64-7640-4349-b02a-f5eebefd3f89)
+
+
+
 
 
 
