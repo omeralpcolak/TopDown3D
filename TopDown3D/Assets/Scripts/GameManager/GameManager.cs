@@ -56,16 +56,17 @@ public class GameManager : MonoBehaviour
         ControllingBossLevel();
     }
 
+
     private void ControllingBossLevel()
     {
-        if (killCountPerSession == 2 && !bossLevelStart)
+        if (killCountPerSession == 10 && !bossLevelStart)
         {
             bossLevelStart = true;
             KillEnemies();
             bossLevelManager.BeginningBossLevel();
         }
 
-        if (killCountPerSession != 2)
+        if (killCountPerSession != 10)
         {
             bossLevelStart = false;
         }
