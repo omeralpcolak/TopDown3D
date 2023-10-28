@@ -58,7 +58,9 @@ public class Xp : MonoBehaviour
 
     private void XpMovement()
     {
-        transform.DOMove(player.transform.position, movementDuration)
+        Vector3 offset = player.transform.position + new Vector3(0, 2f, 0);
+
+        transform.DOMove(offset, movementDuration)
             .SetEase(Ease.Linear);
         
     }

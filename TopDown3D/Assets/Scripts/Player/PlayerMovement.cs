@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     PlayerAttack playerAttack;
 
-    //Animator hatAnim;
+    Animator playerAnim;
 
     ShopManager shopManager;
 
@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         playerAttack = GetComponent<PlayerAttack>();
-        //hatAnim = hat.GetComponent<Animator>();
+        playerAnim = GetComponent<Animator>();
     }
 
 
@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                //hatAnim.SetBool("running", false);
+                
             }
 
 
@@ -83,7 +83,6 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 movementVelocity = direction * movementSpeed * Time.deltaTime;
         rb.MovePosition(transform.position + movementVelocity);
-        //hatAnim.SetBool("running", true);
     }
 
 
@@ -97,21 +96,23 @@ public class PlayerMovement : MonoBehaviour
 
         if (rb.velocity.magnitude >= 0.1f)
         {
+            playerAnim.SetBool("playerWalking", true);
             //hatAnim.SetBool("running", true);
             if(shopManager.equippedObj != null)
             {
-                Animator hatAnim = shopManager.equippedObj.GetComponent<Animator>();
-                hatAnim.SetBool("running", true);
+                //Animator hatAnim = shopManager.equippedObj.GetComponent<Animator>();
+                //hatAnim.SetBool("running", true);
                 //Debug.Log(hatAnim.name);
             }
         }
         else
         {
+            playerAnim.SetBool("playerWalking", false);
             //hatAnim.SetBool("running", false);
             if (shopManager.equippedObj != null)
             {
-                Animator hatAnim = shopManager.equippedObj.GetComponent<Animator>();
-                hatAnim.SetBool("running", false);
+                //Animator hatAnim = shopManager.equippedObj.GetComponent<Animator>();
+                //hatAnim.SetBool("running", false);
             }
         }
     }
