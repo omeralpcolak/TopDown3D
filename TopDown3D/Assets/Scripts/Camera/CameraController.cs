@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public Transform player;
-    public Vector3 offset; 
+    public Vector3 cameraOffSet; 
 
     public float smoothSpeed = 0.125f;
 
@@ -15,7 +15,7 @@ public class CameraController : MonoBehaviour
 
     private void Start()
     {
-        originalOffset = offset;
+        originalOffset = cameraOffSet;
     }
 
     private void FixedUpdate()
