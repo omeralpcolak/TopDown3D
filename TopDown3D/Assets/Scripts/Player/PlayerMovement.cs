@@ -34,6 +34,11 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
 
+        if (GameManager.instance.victory)
+        {
+            playerAnim.SetBool("victory", true);
+        }
+
         if (GameManager.instance.gameCanStart)
         {
             MovePlayerPcControlls();
@@ -96,7 +101,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (rb.velocity.magnitude >= 0.1f)
         {
-            playerAnim.SetBool("playerWalking", true);
+            playerAnim.SetBool("walkingFW", true);
             //hatAnim.SetBool("running", true);
             if(shopManager.equippedObj != null)
             {
@@ -107,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            playerAnim.SetBool("playerWalking", false);
+            playerAnim.SetBool("walkingFW", false);
             //hatAnim.SetBool("running", false);
             if (shopManager.equippedObj != null)
             {

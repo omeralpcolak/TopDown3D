@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
 
     public Vector3 shopSceneOffset;
 
+    public bool victory = false;
+
     public float enemyBoxSpawnCd;
 
     public int killCountPerSession;
@@ -179,6 +181,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator VictoryRtn()
     {
+        victory = true;
         KillEnemies();
         yield return new WaitForSeconds(1f);
         UIDeactivasion();
