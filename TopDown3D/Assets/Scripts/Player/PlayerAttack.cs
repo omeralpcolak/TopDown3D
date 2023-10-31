@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     public GameObject bulletPrefab;
+    public GameObject instantiateEffect;
+
     public Transform spawnPoint;
     public float bulletCooldown;
 
@@ -20,15 +22,17 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Time.time - lastShotTime >= bulletCooldown)
         {
-            StartCoroutine(SpawnBulletRtn());
+            instantiateEffect.gameObject.SetActive(false);
+            SpawnBulletAndEffect();
             lastShotTime = Time.time;
         }
     }
 
-    IEnumerator SpawnBulletRtn()
+    private void  SpawnBulletAndEffect()
     {
+        instantiateEffect.gameObject.SetActive(true);
         Vector3 playerFacingDirection = transform.forward;
         Instantiate(bulletPrefab, spawnPoint.position, Quaternion.LookRotation(playerFacingDirection));
-        yield return null;
+        
     }
 }
